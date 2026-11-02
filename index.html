@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Moral IQ</title>
+<meta name="description" content="Moral IQ: practical, hands-on character building with weekly actions, weekend online meetings and online tracking.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2a4a;--navy2:#163a63;--teal:#0e8f8a;--teal2:#12b3ac;--bg:#f5f7f9;--card:#fff;--tx:#1f2937;--mut:#6b7280;--bd:#e3e8ee}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,"Source Sans 3",system-ui,sans-serif;background:var(--bg);color:var(--tx);font-size:15px}
+a{color:var(--teal);text-decoration:none}h1{font-size:28px;margin:0 0 4px}h2{font-size:18px;margin:0 0 14px}hr{border:0;border-top:1px solid var(--bd);margin:16px 0}
+.top{height:60px;background:var(--navy);color:#fff;display:flex;align-items:center;gap:12px;padding:0 18px;position:fixed;top:0;left:0;right:0;z-index:5}
+.top img.lg{height:36px;border-radius:4px}.brand{font-weight:700;letter-spacing:.5px;color:#fff}.sp{flex:1}
+.tag{background:var(--teal);font-size:11px;padding:3px 9px;border-radius:10px}
+.av{width:34px;height:34px;border-radius:50%;object-fit:cover;background:var(--teal);display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+.burger{display:none;background:none;border:0;color:#fff;font-size:24px;cursor:pointer}
+.side{position:fixed;top:60px;bottom:0;left:0;width:230px;background:#fff;border-right:1px solid var(--bd);padding:14px 0;overflow:auto;z-index:4}
+.side small{display:block;padding:6px 20px;color:var(--mut);font-size:11px;letter-spacing:1px}
+.side a{display:block;padding:11px 20px;color:var(--tx);border-left:3px solid transparent}
+.side a.on{background:#e8f5f4;border-color:var(--teal);color:var(--navy);font-weight:600}
+main{margin:60px 0 0 230px;padding:26px;min-height:calc(100vh - 110px)}
+.grid{display:grid;gap:16px}.g4{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}.g11{grid-template-columns:1fr 1fr}.g2{grid-template-columns:2fr 1fr}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.mc{padding:0;overflow:hidden;display:block;color:inherit}.mi{height:120px;background:linear-gradient(135deg,var(--navy),var(--teal));position:relative}
+.mi img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.mb{padding:14px}.lock{opacity:.6}.lock .mi{filter:grayscale(.8)}
+.bar{height:8px;background:#e5eaf0;border-radius:6px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--teal)}
+.num{color:var(--teal);font-weight:700;font-size:13px}.mut{color:var(--mut);font-size:13px}
+.btn{background:var(--navy);color:#fff;border:0;border-radius:8px;padding:10px 16px;font-size:14px;cursor:pointer;display:inline-block;font-family:inherit;font-weight:600;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(15,42,74,.18)}
+.btn.t{background:var(--teal)}.btn.w{width:100%;text-align:center;font-size:15px;padding:11px}.btn.g{background:#e5eaf0;color:var(--tx)}.btn:disabled{opacity:.6;transform:none;box-shadow:none}
+.btn.o{background:transparent;border:1.5px solid rgba(255,255,255,.55);color:#fff}.btn.o:hover{background:rgba(255,255,255,.1)}
+.btn.sm{padding:7px 12px;font-size:13px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #cfd6df;border-radius:8px;font-size:15px;margin:4px 0 12px;background:#fff;font-family:inherit}
+label{font-size:13px;font-weight:600}.err{color:#b42318;font-size:13px;margin-bottom:8px}.okm{color:#166534;font-size:13px;margin-bottom:8px}
+.hint{font-size:13px;margin:-8px 0 12px;color:#b42318}
+.auth{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.auth .l{background:var(--navy);color:#fff;padding:60px;display:flex;flex-direction:column;justify-content:center}
+.auth .l img{width:90px;border-radius:10px;margin-bottom:20px}.auth .l h1{font-size:38px}
+.auth .r{padding:40px 24px;display:flex;align-items:center;justify-content:center}.auth form{width:100%;max-width:400px}
+.back{display:inline-block;margin-bottom:18px;font-size:13px;color:var(--mut)}
+.steps{display:flex;gap:6px;margin-bottom:16px}.steps b{flex:1;height:5px;border-radius:4px;background:#dde3ea}.steps b.on{background:var(--teal)}
+.pic{width:90px;height:90px;border-radius:50%;object-fit:cover;background:#e5eaf0;display:block;margin:6px 0 10px}
+ul.n{list-style:none;padding:0;margin:0}ul.n li{padding:11px 0;border-bottom:1px solid var(--bd)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--bd);vertical-align:top}.wrap{overflow-x:auto}
+.pill{display:inline-block;padding:2px 10px;border-radius:12px;font-size:12px;font-weight:600}.ok{background:#dcfce7;color:#166534}.wt{background:#fef3c7;color:#92400e}.bl{background:#e0ecff;color:#1e3a8a}
+.ban{background:#fff7e0;border:1px solid #f3d98b;border-radius:10px;padding:14px;margin-bottom:16px}.ban.t{background:#e8f5f4;border-color:#a7d9d6}
+.stat{font-size:30px;font-weight:700;color:var(--navy)}.chk{max-height:180px;overflow:auto;border:1px solid var(--bd);border-radius:8px;padding:8px;margin-bottom:10px}
+footer{margin-left:230px;padding:18px;text-align:center;color:var(--mut);font-size:12px}.ld{padding:60px;text-align:center;color:var(--mut)}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:120px}
+.ev{display:flex;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--bd);color:inherit}.ev:last-child{border:0}
+.ev .d{width:52px;height:56px;border-radius:10px;background:var(--navy);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;line-height:1.1}
+.ev .d b{font-size:20px}.ev .d span{font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:.85}
+.act{display:flex;gap:16px;align-items:center}.act .ic{width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,var(--navy),var(--teal));flex:none;display:grid;place-items:center;color:#fff;font-size:28px}
+.ive{background:#f8fafc;border:1px solid var(--bd);border-radius:10px;padding:12px;margin-top:8px}
+/* ===== homepage ===== */
+.pub{background:#fff;min-height:100vh}
+.nav{position:sticky;top:0;z-index:10;background:rgba(15,42,74,.97);backdrop-filter:blur(8px);color:#fff}
+.nav .in{max-width:1160px;margin:0 auto;height:66px;display:flex;align-items:center;gap:22px;padding:0 20px}
+.nav img{height:38px;border-radius:6px}.nav .links a{color:#d6e2f0;font-size:14px;font-weight:500;margin-right:20px}.nav .links a:hover{color:#fff}
+.hero{background:radial-gradient(1100px 500px at 85% -10%,rgba(18,179,172,.35),transparent 60%),linear-gradient(160deg,var(--navy) 0%,#0b2240 60%,#0a1d36 100%);color:#fff;position:relative;overflow:hidden}
+.hero .in{max-width:1160px;margin:0 auto;padding:72px 20px 84px;display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center;position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:6px 12px;border-radius:20px;font-size:13px;font-weight:600}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--teal2);box-shadow:0 0 0 0 rgba(18,179,172,.7);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(18,179,172,0)}100%{box-shadow:0 0 0 0 rgba(18,179,172,0)}}
+.hero h1{font-size:52px;line-height:1.06;letter-spacing:-1.2px;margin:18px 0 16px;font-weight:800}.hero h1 em{font-style:normal;color:var(--teal2)}
+.hero p.lead{font-size:18px;line-height:1.6;color:#d3deeb;max-width:560px;margin:0 0 28px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}.hero .cta .btn{padding:14px 22px;font-size:15px;border-radius:10px}
+.orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.18;background:var(--teal2);animation:float 12s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-24px)}}
+.panel{background:rgba(255,255,255,.97);color:var(--tx);border-radius:18px;padding:22px;box-shadow:0 30px 60px rgba(0,0,0,.3)}
+.panel h3{margin:0 0 4px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal)}
+.pev{display:flex;gap:14px;align-items:center;padding:14px;border-radius:12px;color:inherit;transition:background .15s,transform .15s;margin:0 -8px}
+.pev:hover{background:#eef6f6;transform:translateX(3px)}.pev .d{width:56px;height:60px;border-radius:12px;background:var(--navy);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;line-height:1.1}
+.pev .d b{font-size:21px}.pev .d span{font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:.85}.pev .go{margin-left:auto;color:var(--teal);font-size:20px}
+.sec{max-width:1160px;margin:0 auto;padding:80px 20px}.sec .k{color:var(--teal);font-weight:700;font-size:13px;letter-spacing:1.6px;text-transform:uppercase}
+.sec h2{font-size:34px;letter-spacing:-.6px;margin:8px 0 14px;line-height:1.15}.sec p.sub{font-size:17px;line-height:1.65;color:#4b5563;max-width:720px;margin:0}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.pil{border:1px solid var(--bd);border-radius:16px;padding:22px;background:#fff;transition:transform .2s,box-shadow .2s,border-color .2s}
+.pil:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(15,42,74,.1);border-color:#bfe3e1}
+.pil .ic{width:44px;height:44px;border-radius:12px;background:#e8f5f4;color:var(--teal);display:grid;place-items:center;font-size:22px;margin-bottom:14px}
+.pil b{display:block;font-size:16px;margin-bottom:6px;color:var(--navy)}.pil span{color:var(--mut);font-size:14px;line-height:1.5}
+.band{background:var(--bg)}
+.course{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:center}
+.mods{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.mod{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--bd);border-radius:10px;padding:10px 12px;font-size:14px;transition:border-color .15s,transform .15s}
+.mod:hover{border-color:var(--teal);transform:translateY(-2px)}.mod i{font-style:normal;font-weight:700;color:var(--teal);font-size:12px;width:22px}
+.assess{background:linear-gradient(135deg,#0b2240,var(--navy2));color:#fff;border-radius:24px;padding:48px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;overflow:hidden;position:relative}
+.assess h2{color:#fff}.assess p.sub{color:#cbd8e6}
+.eq{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:22px}
+.eq .r{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center;margin:10px 0;font-size:13px;color:#d3deeb}
+.eq .t{height:10px;background:rgba(255,255,255,.12);border-radius:6px;overflow:hidden}.eq .t i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--teal),var(--teal2));animation:eqb 3.2s ease-in-out infinite alternate}
+@keyframes eqb{from{width:var(--a)}to{width:var(--b)}}
+.play{display:inline-flex;align-items:center;gap:12px;background:var(--teal);color:#fff;border:0;border-radius:14px;padding:16px 24px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:26px;transition:transform .15s,box-shadow .15s}
+.play:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 14px 30px rgba(14,143,138,.45)}.play b{width:30px;height:30px;border-radius:50%;background:#fff;color:var(--teal);display:grid;place-items:center;font-size:13px}
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:32px}
+.tm{border:1px solid var(--bd);border-radius:16px;padding:22px;text-align:center;background:#fff;transition:transform .2s,box-shadow .2s}.tm:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(15,42,74,.1)}
+.tm img,.tm .ph{width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto 12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy),var(--teal));color:#fff;font-size:34px;font-weight:700}
+.tm b{display:block;color:var(--navy);font-size:16px}.tm .ti{color:var(--teal);font-size:13px;font-weight:600;margin:4px 0 8px}.tm p{color:var(--mut);font-size:14px;line-height:1.5;margin:0}
+.join{background:var(--navy);color:#fff;text-align:center}.join h2{color:#fff}.join p.sub{color:#cbd8e6;margin:0 auto 26px}
+.cmail{margin:26px 0 0;color:#cbd8e6;font-size:15px}.cmail a,.pfoot a{color:var(--teal2)}
+.pfoot{margin:0;background:#0a1d36;color:#93a6bd;font-size:13px;text-align:center;padding:26px 20px}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}.rv.shown{opacity:1;transform:none}
+.modal{position:fixed;inset:0;background:rgba(6,18,34,.82);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.modal .box{background:#fff;width:min(1180px,100%);height:min(92vh,900px);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.modal .hd{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--navy);color:#fff;font-weight:600}
+.modal .hd button{margin-left:auto;background:rgba(255,255,255,.12);border:0;color:#fff;border-radius:8px;padding:6px 12px;cursor:pointer;font-family:inherit}
+.modal iframe{border:0;flex:1;width:100%;background:#fff}
+/* ===== classroom ===== */
+.rm{position:fixed;inset:0;background:#0b1626;color:#e6edf5;display:flex;flex-direction:column;z-index:20;font-size:14px}
+.rm .bar1{height:58px;display:flex;align-items:center;gap:12px;padding:0 18px;border-bottom:1px solid #1c2c44;background:#0e1c30}
+.rm .bar1 b{font-size:15px}.rm .bar1 .pill{background:#13324f;color:#9fd8d4}.rm .live{display:inline-flex;align-items:center;gap:6px;color:#fca5a5;font-weight:600;font-size:12px}
+.rm .live i{width:8px;height:8px;border-radius:50%;background:#ef4444;animation:pulse 2s infinite}
+.rm .body{flex:1;display:flex;min-height:0}
+.rm .stage{flex:1;padding:14px;display:grid;gap:12px;min-height:0;align-content:center}
+.rm .stage.spot{grid-template-columns:1fr 220px!important;grid-template-rows:1fr!important}
+.rm .strip{display:flex;flex-direction:column;gap:10px;overflow:auto;min-height:0}
+.tile{position:relative;background:#14243a;border-radius:14px;overflow:hidden;aspect-ratio:16/9;min-height:0;border:2px solid transparent;transition:border-color .2s}
+.tile.speak{border-color:var(--teal2);box-shadow:0 0 0 3px rgba(18,179,172,.25)}
+.tile video{width:100%;height:100%;object-fit:cover;display:block;background:#000}.tile.me video{transform:scaleX(-1)}.tile.scr video{object-fit:contain}
+.tile .avt{position:absolute;inset:0;display:grid;place-items:center}.tile .avt span{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--navy2),var(--teal));display:grid;place-items:center;font-size:30px;font-weight:700;color:#fff}
+.tile .nm{position:absolute;left:10px;bottom:10px;background:rgba(8,16,28,.72);padding:4px 10px;border-radius:8px;font-size:13px;display:flex;gap:6px;align-items:center;max-width:80%}
+.tile .hand{position:absolute;top:10px;left:10px;background:#f59e0b;color:#1f1300;border-radius:20px;padding:4px 10px;font-weight:700;font-size:13px;animation:fade .3s}
+.stage.spot .tile.scr{aspect-ratio:auto;height:100%}.strip .tile{flex:none}
+.rm .side2{width:320px;border-left:1px solid #1c2c44;background:#0e1c30;display:flex;flex-direction:column;min-height:0}
+.rm .tabs{display:flex;border-bottom:1px solid #1c2c44}.rm .tabs button{flex:1;background:none;border:0;color:#9fb3c8;padding:12px;cursor:pointer;font-family:inherit;font-weight:600;border-bottom:2px solid transparent}
+.rm .tabs button.on{color:#fff;border-color:var(--teal2)}.rm .pane{flex:1;overflow:auto;padding:12px}
+.ivq .pp{display:flex;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px solid #e5e9f0}.ivq .pp .a{width:36px;height:36px;border-radius:50%;background:#0f2a4a;color:#fff;display:grid;place-items:center;font-weight:700;flex:none}.ivq .pp .x{margin-left:auto;flex:none;display:flex;gap:6px}
+.ivq .sm2{background:#eef2f7;border:0;color:#0f2a4a;border-radius:6px;padding:7px 12px;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600}.ivq .sm2.g{background:var(--teal);color:#fff}.ivq .sm2.r{background:#fee2e2;color:#991b1b}
+.rm .wait{background:#1b2e1f;border:1px solid #2f6b3a;border-radius:10px;padding:10px;margin-bottom:12px}
+.rm .pp{display:flex;align-items:center;gap:10px;padding:8px 4px;border-bottom:1px solid #182a40}.rm .pp .a{width:32px;height:32px;border-radius:50%;background:var(--navy2);display:grid;place-items:center;font-weight:700;flex:none}
+.rm .pp>div:nth-child(2){flex:1;min-width:0;overflow-wrap:anywhere}.rm .pp .x{margin-left:auto;flex:none;display:flex;gap:4px}.rm .sm2{background:#1c3150;border:0;color:#dbe7f3;border-radius:6px;padding:5px 8px;font-size:12px;cursor:pointer;font-family:inherit}.rm .sm2.g{background:var(--teal)}.rm .sm2.r{background:#7f1d1d}
+.rm .msg{margin-bottom:10px}.rm .msg b{color:#9fd8d4;font-size:12px}.rm .chatin{display:flex;gap:6px;padding:10px;border-top:1px solid #1c2c44}.rm .chatin input{margin:0;background:#14243a;border-color:#22385a;color:#fff}
+.rm .ctl{height:76px;display:flex;align-items:center;justify-content:center;gap:10px;border-top:1px solid #1c2c44;background:#0e1c30;position:relative}
+.cb{width:52px;height:52px;border-radius:50%;border:0;background:#1c3150;color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center;position:relative;transition:background .15s,transform .15s}
+.cb:hover{transform:translateY(-2px);background:#25416a}.cb.off{background:#b91c1c}.cb.on{background:var(--teal)}.cb.hand.on{background:#f59e0b}
+.cb small{position:absolute;top:-4px;right:-4px;background:#ef4444;border-radius:10px;font-size:11px;padding:1px 6px;font-weight:700}
+.cb.leave{width:auto;border-radius:26px;padding:0 20px;background:#dc2626;font-size:14px;font-weight:700;font-family:inherit}
+.cb[title]:hover::after{content:attr(title);position:absolute;bottom:62px;background:#000;color:#fff;font-size:12px;padding:4px 8px;border-radius:6px;white-space:nowrap}
+.pre{flex:1;display:grid;place-items:center;padding:20px;overflow:auto}.pre .box2{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center;max-width:980px;width:100%}
+.pre .pv{position:relative;background:#14243a;border-radius:18px;overflow:hidden;aspect-ratio:16/9}.pre .pv video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.pre .pv .t2{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:10px}
+.pre h1{color:#fff;font-size:26px}.pre p{color:#9fb3c8;line-height:1.6}.spin{width:42px;height:42px;border:4px solid #22385a;border-top-color:var(--teal2);border-radius:50%;animation:spin 1s linear infinite;margin:10px 0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{position:absolute;bottom:90px;left:50%;transform:translateX(-50%);background:#f8fafc;color:#0f172a;padding:10px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.4);font-weight:600;z-index:3;animation:fade .2s}
+@media(max-width:860px){.rm .side2{position:absolute;right:0;top:58px;bottom:76px;width:min(340px,100%);z-index:2}.rm .side2.hide{display:none}.pre .box2{grid-template-columns:1fr}.rm .stage.spot{grid-template-columns:1fr!important;grid-template-rows:1fr 120px!important}.rm .stage.spot .strip{flex-direction:row}.strip .tile{width:160px}.cb{width:46px;height:46px}}
+@media(max-width:960px){.hero .in,.course,.assess{grid-template-columns:1fr}.pillars{grid-template-columns:1fr 1fr}.nav .links{display:none}.hero h1{font-size:38px}.assess{padding:30px 22px}}
+@media(max-width:860px){.burger{display:block}.side{transform:translateX(-100%);transition:.2s}.side.open{transform:none}
+main,footer{margin-left:0}.g2,.g11{grid-template-columns:1fr}.auth{grid-template-columns:1fr}.auth .l{display:none}main{padding:16px}}
+@media(max-width:560px){.pillars,.mods{grid-template-columns:1fr}.sec{padding:56px 16px}.sec h2{font-size:27px}.hero .in{padding:48px 16px 56px}.nav .in{padding:0 16px;gap:10px}.nav .brand{display:none}.modal{padding:0}.modal .box{height:100vh;border-radius:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style></head><body>
+<div id="app"><div class="ld">Loading…</div></div>
+<div id="modal"></div>
+<script>
+/* ===== CONFIG ===== */
+const API="https://script.google.com/macros/s/AKfycbwQeYdCCUIPpmIXy5WXGxLGJr6bviR4T8IwfZmTJZpQuGsAqotG9iAxfjH-FwCQNF3n/exec";
+const PAY_URL="https://paystack.shop/pay/1bnnwfwdaw";
+const LOGO="logo.jpg", FEE="GHS 100.00";
+const GAME_PREVIEW="rtr-preview.html";            // the public one-scene game (upload next to this file)
+const BLANK="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+const DEF=["Self-Awareness and Identity Clarity","Emotional Intelligence","Ethical Reasoning","Goal Setting","Integrity and Accountability","Financial Literacy","Communication and Respect","Discipline and Habits","Responsibility at Work","Conflict Resolution","Leadership and Service","Excellence and Review"];
+const RES=["Course Handbook","Programme Guide","Assessment Guide","Behaviour Log Template","Financial Ledger Template","EQ Incident Log","Integrity Log","Excellence Checklist"];
+/* Default homepage text. The admin edits all of it under Website, without touching code. */
+const DEFAULT_SITE={
+ eyebrow:"Character Building · Cohort 1 now enrolling",
+ heroTitle:"Practical character, <em>built week by week.</em>",
+ heroText:"Moral IQ gives you simple templates for everyday moral decisions and clear weekly actions that grow into lasting habits. Fully online, hands-on and guided.",
+ aboutTitle:"Learning by doing",
+ aboutText:"Moral IQ is a smart, hands-on school of character. Every module gives you a practical template and a few clear actions to take each week, so good values become everyday habits. Weekend online meetings, practical activities and simple online tracking help you, your pair and your instructors see your progress and keep you growing.",
+ pillars:[{t:"Practical templates",d:"Easy tools for real decisions at home, at school and at work."},{t:"Weekly actions",d:"Clear steps every week that turn values into habits."},{t:"Weekend meetings",d:"Live online sessions every weekend from 14 November 2026."},{t:"Tracked and supported",d:"Online logs and check-ins keep you on course."}],
+ courseTitle:"Character Building",courseTag:"Level 1 · 12 modules",
+ courseText:"Our first course is now enrolling. Cohort 1 begins on 14 November 2026 with weekend online meetings.",
+ assessTitle:"Assess your Moral IQ",assessSub:"Know your emotional intelligence",
+ assessText:"Watch a short scene, read how someone feels, then speak to them. Can you calm the room?",
+ teamTitle:"Meet the team",teamText:"Experienced instructors who guide, check in and help you build.",
+ joinTitle:"Ready to build character that shows?",joinText:"Create your account, then complete your registration payment to secure your place in Cohort 1.",
+ contact:"admin@moral-iq.com, bkoomson@moral-iq.com",showGame:true,
+ events:[
+  {id:"interview",title:"Interview of participants",date:"2026-10-31",date2:"2026-11-01",time:"Online",short:"A short, friendly online interview.",text:"Interviews take place online in the Moral IQ Classroom. There is no time to book: sign in, open Classroom and press Start my interview. The panel admits one person at a time."},
+  {id:"orientation",title:"Virtual Orientation",date:"2026-11-07",date2:"",time:"18:00 GMT",short:"Meet your instructors and your cohort.",text:"The virtual orientation is on 7 November 2026 at 18:00 GMT. Sign in to view the details."}]};
+let SITE=JSON.parse(JSON.stringify(DEFAULT_SITE)),TEAM=[],START_ISO="2026-11-16",START=new Date("2026-11-16T00:00:00"),START_TXT="16 November 2026";
+
+/* ===== HELPERS ===== */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const enc=s=>encodeURIComponent(s).replace(/'/g,"%27"),dec=decodeURIComponent;
+const safeUrl=u=>/^https:\/\//.test(u)?u:"#";
+const linkify=s=>esc(s).replace(/https:\/\/[^\s<]+/g,u=>`<a href="${u}" target="_blank" rel="noopener">${u}</a>`).replace(/\n/g,"<br>");
+const mailify=s=>esc(s).replace(/[\w.+-]+@[\w-]+(\.[\w-]+)+/g,m=>`<a href="mailto:${m}">${m}</a>`);
+const rich=s=>esc(s).replace(/&lt;em&gt;/g,"<em>").replace(/&lt;\/em&gt;/g,"</em>");  /* headings may use <em> for the teal highlight */
+const sess=()=>{try{return JSON.parse(localStorage.getItem("miq_s"))}catch(e){return null}};
+const setSess=s=>{try{s?localStorage.setItem("miq_s",JSON.stringify(s)):localStorage.removeItem("miq_s")}catch(e){}};
+let S=null,T=[],F=[],R={rooms:[],ready:false},I=[],G={plays:[],homePlays:0},MH=null,reg={step:1},fp={step:1,email:""},tp="",ivOpen="",ivFilter="all",GAME_HTML="";
+async function api(action,d={}){const s=sess()||{};
+ try{const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({action,email:s.email,token:s.token},d))});return await r.json()}
+ catch(e){return{ok:false,error:"Network error. Please try again."}}}
+function applySite(site,start,team){SITE=Object.assign(JSON.parse(JSON.stringify(DEFAULT_SITE)),site||{});if(!SITE.contact)SITE.contact=DEFAULT_SITE.contact;if(team)TEAM=team;
+ if(/^\d{4}-\d{2}-\d{2}$/.test(start||"")){START_ISO=start;START=new Date(start+"T00:00:00");START_TXT=START.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}}
+(function(){try{const c=JSON.parse(localStorage.getItem("miq_site"));if(c)applySite(c.site,c.start,c.team)}catch(e){}})();
+async function loadSite(){const r=await api("site");if(!r.ok)return false;applySite(r.site,r.start,r.team);try{localStorage.setItem("miq_site",JSON.stringify({site:r.site,start:r.start,team:r.team}))}catch(e){}return true}
+async function load(){if(!sess()){S=null;return}const r=await api("me");if(r.ok){S=r;applySite(r.site,r.start)}else{S=null;if(r.error&&r.error.indexOf("Network")<0)setSess(null)}}
+async function loadT(){const r=await api("students");T=r.ok?r.students:[]}
+async function loadF(){const r=await api("listFiles");F=r.ok?r.files:[]}
+async function loadI(){const r=await api("listInstructors");I=r.ok?r.list:[]}
+async function loadR(){const r=await api("rooms");R=r.ok?r:{rooms:[],ready:false}}
+async function loadG(){const r=await api("gamePlays");G=r.ok?r:{plays:[],homePlays:0}}
+async function loadMH(){const r=await api("mailHealth");MH=r.ok?r:{error:r.error}}
+function resize(file,cb){if(!file)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement("canvas"),s=Math.min(1,300/Math.max(im.width,im.height));c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);cb(c.toDataURL("image/jpeg",.8))};im.src=r.result};r.readAsDataURL(file)}
+const isT=()=>S&&S.role=="teacher",isA=()=>isT()&&S.user.admin;
+const mods=()=>DEF.map((t,i)=>{const m=(S.modules||[]).find(x=>+x.no==i+1)||{};return Object.assign({},m,{no:i+1,title:m.title||t,desc:m.desc||""})});
+const prog=()=>(S.user&&S.user.progress)||{};
+const isOpen=(m,p)=>isT()||(Date.now()>=START&&!!m.active&&(m.no==1||!!p[m.no-1]));
+const why=m=>Date.now()<START?"Opens "+START_TXT:!m.active?"Not yet activated by your instructor":"Complete Module "+(m.no-1)+" first";
+const dObj=s=>new Date(s+"T00:00:00");
+const dLong=s=>dObj(s).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+const evWhen=e=>{const a=dObj(e.date),o={day:"numeric",month:"long",year:"numeric"};return (e.date2?a.toLocaleDateString("en-GB",{day:"numeric",month:"long"})+" & "+dObj(e.date2).toLocaleDateString("en-GB",o):a.toLocaleDateString("en-GB",o))+(e.time?" · "+e.time:"")};
+const evDay=e=>{const a=dObj(e.date);return `<b>${a.getDate()}</b><span>${a.toLocaleDateString("en-GB",{month:"short"})}</span>`};
+const upcoming=()=>(SITE.events||[]).filter(e=>/^\d{4}-\d{2}-\d{2}$/.test(e.date)&&dObj(e.date2||e.date).getTime()+864e5>Date.now()).sort((a,b)=>a.date<b.date?-1:1);
+const slotTxt=iv=>iv&&iv.date?dLong(iv.date)+", "+iv.start+"–"+iv.end+" GMT":"";
+function fl(L,canDel,who){return L.length?`<ul class="n">${L.map(f=>`<li style="display:flex;justify-content:space-between;gap:10px"><span>📎 <a href="${esc(safeUrl(f.url))}" target="_blank" rel="noopener">${esc(f.name)}</a>${who?` <span class="mut">Module ${f.module} · ${esc(f.ownerName)} · ${esc(f.date)}</span>`:""}</span>${canDel?`<a href="#" onclick="delF('${esc(f.id)}');return false">Delete</a>`:""}</li>`).join("")}</ul>`:'<p class="mut">None yet.</p>'}
+async function upload(inp,n,st){const f=$(inp).files[0],s=$(st);if(!f)return;
+ if(f.size>7*1024*1024){s.textContent="File too large (max 7 MB).";return}
+ s.textContent="Uploading…";
+ const data=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result.split(",")[1]);r.readAsDataURL(f)});
+ const r=await api("uploadFile",{module:n,fileName:f.name,mime:f.type,data});
+ if(!r.ok){s.textContent=r.error||"Upload failed.";return}
+ await loadF();route()}
+async function delF(id){if(!confirm("Delete this file?"))return;await api("delFile",{id});await loadF();route()}
+
+/* ===== GAME (Read the Room) ===== */
+let gameCtx=null;
+function closeGame(){$("modal").innerHTML="";if(gameCtx&&gameCtx.url)URL.revokeObjectURL(gameCtx.url);gameCtx=null;document.body.style.overflow=""}
+function openFrame(src,title,ctx){closeGame();gameCtx=ctx;document.body.style.overflow="hidden";
+ $("modal").innerHTML=`<div class="modal" role="dialog" aria-label="${esc(title)}"><div class="box"><div class="hd"><span>🎭 ${esc(title)}</span><button onclick="closeGame()">Close ✕</button></div><iframe id="gf" src="${src}" allow="microphone; autoplay" title="${esc(title)}"></iframe></div></div>`}
+function playHomeGame(){openFrame(GAME_PREVIEW+"?grade=hard&cta=join","Read the Room · Emotional intelligence",{where:"home"})}
+async function playPortalGame(){
+ if(!(S.game&&S.game.full)){openFrame(GAME_PREVIEW+"?cta=pay","Read the Room · Preview",{where:"portal"});return}
+ const b=$("pg");if(b){b.disabled=true;b.textContent="Loading the full game…"}
+ if(!GAME_HTML){const r=await api("gameFile");if(!r.ok){if(b){b.disabled=false;b.textContent="Play"}alert(r.error||"Could not load the game.");return}GAME_HTML=r.html}
+ const url=URL.createObjectURL(new Blob([GAME_HTML],{type:"text/html"}));
+ openFrame(url,"Read the Room · Full game",{where:"portal",url});if(b){b.disabled=false;b.textContent="Play"}}
+addEventListener("message",e=>{const f=$("gf"),m=e.data;if(!f||e.source!==f.contentWindow||!m||m.source!=="miq-read-the-room"||!gameCtx)return;
+ if(m.type==="result"){if(gameCtx.where==="home"){if(!gameCtx.logged){gameCtx.logged=1;api("homePlay")}}else api("logGame",{play:m.play})}
+ if(m.type==="cta"){if(m.action==="pay"){window.open(PAY_URL,"_blank","noopener");return}closeGame();location.hash=m.action==="signup"?"#/register":"#/login"}});
+
+/* ===== SHELL ===== */
+function shell(cur,body){const u=S.user,t=isT(),nm=u.name||u.email;
+const nav=t?[["t","Dashboard"],["t/students","Students"],["t/modules","Modules"],["t/classroom","Classroom"],["t/announce","Announcements"],["t/messages","Messages"],["t/activity","Activity"]]
+ .concat(u.admin?[["t/interviews","Interviews"],["t/website","Website"]]:[]).concat(u.lead||u.admin?[["t/instructors","Instructors"]]:[]).concat([["profile","My Profile"]])
+:[["dashboard","Dashboard"],["learning","My Learning"],["activities","Learning activities"],["classroom","Classroom"],["calendar","Events"],["resources","Resources"],["profile","Profile"]];
+return `<div class="top"><button class="burger" onclick="$('side').classList.toggle('open')">☰</button><a href="#/" style="display:flex;align-items:center;gap:12px"><img class="lg" src="${LOGO}" alt="" onerror="this.style.display='none'"><span class="brand">MORAL IQ</span></a>${t?`<span class="tag">${u.admin?"Admin":"Instructor"} Portal</span>`:""}<span class="sp"></span><span style="font-size:14px">${esc(nm.split(" ")[0])}</span>${u.photo?`<img class="av" src="${esc(u.photo)}">`:`<span class="av">${esc(nm[0].toUpperCase())}</span>`}</div>
+<nav class="side" id="side"><small>NAVIGATION</small>${nav.map(([h,n])=>`<a href="#/${h}" class="${h==cur?"on":""}" onclick="$('side').classList.remove('open')">${n}</a>`).join("")}<a href="#/">Website home</a><a href="#/login" onclick="logout()">Sign out</a></nav>
+<main>${body}</main><footer>Moral IQ · Character • Competence • Responsibility · © 2026 Moral IQ</footer>`}
+function logout(){setSess(null);S=null;GAME_HTML=""}
+
+/* ===== HOMEPAGE ===== */
+const ICONS=["🧭","✅","💬","📈"];
+function home(){const s=SITE,ev=upcoming(),signed=!!sess();
+const navR=signed?`<a class="btn t" href="#/portal">My portal</a>`:`<a class="btn o sm" href="#/login">Sign in</a><a class="btn t sm" href="#/register">Sign up</a>`;
+const team=TEAM.length?TEAM:[];
+return `<div class="pub"><header class="nav"><div class="in"><a href="#/" style="display:flex;align-items:center;gap:10px"><img src="${LOGO}" alt="Moral IQ logo" onerror="this.style.display='none'"><span class="brand">MORAL IQ</span></a>
+<nav class="links"><a href="#" onclick="go('about');return false">About</a><a href="#" onclick="go('course');return false">Course</a><a href="#" onclick="go('events');return false">Events</a>${s.showGame?`<a href="#" onclick="go('assess');return false">Assess</a>`:""}${team.length?`<a href="#" onclick="go('team');return false">Team</a>`:""}<a href="#" onclick="go('contact');return false">Contact</a></nav><span class="sp"></span><div style="display:flex;gap:8px">${navR}</div></div></header>
+<section class="hero"><span class="orb" style="width:260px;height:260px;left:-80px;bottom:-90px"></span><span class="orb" style="width:120px;height:120px;right:38%;top:40px;animation-delay:-5s"></span>
+<div class="in"><div class="rv"><span class="eyebrow"><i></i>${esc(s.eyebrow)}</span><h1>${rich(s.heroTitle)}</h1><p class="lead">${esc(s.heroText)}</p>
+<div class="cta">${signed?`<a class="btn t" href="#/portal">Go to my portal</a>`:`<a class="btn t" href="#/register">Sign up</a><a class="btn o" href="#/login">Sign in</a>`}${s.showGame?`<a class="btn o" href="#" onclick="playHomeGame();return false">▶ Assess your EQ</a>`:""}</div></div>
+<aside class="panel rv" id="events"><h3>Upcoming events</h3>${ev.length?ev.map(e=>`<a class="pev" href="#/event/${enc(e.id)}"><span class="d">${evDay(e)}</span><span><b>${esc(e.title)}</b><br><span class="mut">${esc(evWhen(e))}</span><br><span style="font-size:13px">${esc(e.short)}</span></span><span class="go">›</span></a>`).join(""):'<p class="mut">New events will be announced here.</p>'}</aside></div></section>
+<section class="sec" id="about"><div class="rv"><div class="k">About Moral IQ</div><h2>${esc(s.aboutTitle)}</h2><p class="sub">${esc(s.aboutText)}</p></div>
+<div class="pillars">${(s.pillars||[]).map((p,i)=>`<div class="pil rv" style="transition-delay:${i*80}ms"><div class="ic">${ICONS[i%4]}</div><b>${esc(p.t)}</b><span>${esc(p.d)}</span></div>`).join("")}</div></section>
+<div class="band"><section class="sec course" id="course"><div class="rv"><div class="k">${esc(s.courseTag)}</div><h2>${esc(s.courseTitle)}</h2><p class="sub">${esc(s.courseText)}</p><p style="margin-top:22px">${signed?`<a class="btn t" href="#/portal">Open my portal</a>`:`<a class="btn t" href="#/register">Enrol now</a>`}</p></div>
+<div class="mods rv">${DEF.map((t,i)=>`<div class="mod"><i>${String(i+1).padStart(2,"0")}</i>${esc(t)}</div>`).join("")}</div></section></div>
+${s.showGame?`<section class="sec" id="assess"><div class="assess rv"><div><div class="k" style="color:var(--teal2)">${esc(s.assessTitle)}</div><h2>${esc(s.assessSub)}</h2><p class="sub">${esc(s.assessText)}</p>
+<button class="play" onclick="playHomeGame()"><b>▶</b>Play Read the Room</button><p class="mut" style="color:#9fb3c8;margin-top:12px">About 3 minutes · works best with a microphone</p></div>
+<div class="eq" aria-hidden="true">${[["Anger","8%","30%"],["Anxiety","70%","35%"],["Embarrassment","80%","45%"],["Sadness","40%","20%"],["Calmness","20%","70%"]].map(([n,a,b],i)=>`<div class="r"><span>${n}</span><div class="t"><i style="--a:${a};--b:${b};animation-delay:${i*.25}s"></i></div></div>`).join("")}<p style="font-size:13px;color:#9fb3c8;margin:14px 0 0">Read the feeling. Choose your words. Watch the bars move.</p></div></div></section>`:""}
+${team.length?`<div class="band"><section class="sec" id="team"><div class="rv"><div class="k">Team</div><h2>${esc(s.teamTitle)}</h2><p class="sub">${esc(s.teamText)}</p></div>
+<div class="team">${team.map(i=>`<div class="tm rv">${i.photo?`<img src="${esc(i.photo)}" alt="">`:`<div class="ph">${esc((i.name||"?")[0])}</div>`}<b>${esc(i.name)}</b><div class="ti">${esc(i.title)}</div><p>${esc(i.bio)}</p></div>`).join("")}</div></section></div>`:""}
+<section class="join" id="contact"><div class="sec rv"><h2>${esc(s.joinTitle)}</h2><p class="sub">${esc(s.joinText)}</p>${signed?`<a class="btn t" href="#/portal">Go to my portal</a>`:`<a class="btn t" style="padding:14px 26px" href="#/register">Create your account</a>`}
+<p class="cmail">Questions? Email us at ${mailify(s.contact)}</p></div></section>
+<footer class="pfoot">Moral IQ · Character • Competence • Responsibility · ${mailify(s.contact)} · © 2026 Moral IQ</footer></div>`}
+function go(id){const e=$(id);if(e)e.scrollIntoView({behavior:"smooth",block:"start"})}
+function reveal(){const L=document.querySelectorAll(".rv");if(!("IntersectionObserver" in window)){L.forEach(e=>e.classList.add("shown"));return}
+ const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("shown");o.unobserve(e.target)}}),{threshold:.12});L.forEach(e=>o.observe(e))}
+function eventPage(id){const e=(SITE.events||[]).find(x=>x.id==id);if(!e)return home();const signed=!!sess();
+const mine="";
+return `<div class="auth"><div class="l"><img src="${LOGO}" onerror="this.style.display='none'"><h1>${esc(e.title)}</h1><p style="font-size:18px">${esc(evWhen(e))}</p><p style="opacity:.8">${esc(e.short)}</p></div>
+<div class="r"><div style="width:100%;max-width:440px"><a class="back" href="#/">← Back to home</a><div class="num">EVENT</div><h1>${esc(e.title)}</h1><p class="mut">${esc(evWhen(e))}</p><p style="font-size:16px;line-height:1.6">${esc(e.text)}</p>
+${mine?`<div class="ban t"><b>Your allocated time:</b><br>${esc(mine)}</div>`:""}
+${signed?`<a class="btn t w" href="#/portal">Open my portal</a>`:`<a class="btn t w" href="#/login">Sign in</a><p class="mut" style="text-align:center">No account yet? <a href="#/register">Sign up</a></p>`}</div></div></div>`}
+
+/* ===== PUBLIC VIEWS ===== */
+const left=(h,p)=>`<div class="l"><img src="${LOGO}" onerror="this.style.display='none'"><h1>${h}</h1>${p}</div>`;
+const V={
+login(){return `<div class="auth">${left("MORAL IQ",'<p style="font-size:20px">Character<br>Competence<br>Responsibility</p><p style="opacity:.8">Building people for responsible personal and professional life.</p>')}
+<div class="r"><form onsubmit="doLogin(event)"><a class="back" href="#/">← Back to home</a><h1>Welcome back</h1><p class="mut">Sign in to your Moral IQ account</p><div id="e" class="err"></div>
+<label>Email</label><input id="em" type="email" required><label>Password</label><input id="pw" type="password" required>
+<p style="text-align:right;margin:-6px 0 12px"><a href="#/forgot">Forgot password?</a></p>
+<button class="btn t w" id="sb">Sign in</button><p class="mut">No account? <a href="#/register">Create account</a></p></form></div></div>`},
+forgot(){const b=fp.step==1?`<div id="e" class="err"></div><label>Email</label><input id="em" type="email" required value="${esc(fp.email)}"><button class="btn t w" id="sb">Send reset code</button>`
+:`<p class="okm">If ${esc(fp.email)} is registered, a 6-digit code has been sent. Check your spam folder too. The code works for 15 minutes.</p><div id="e" class="err"></div>
+<label>6-digit code</label><input id="cd" required inputmode="numeric" maxlength="6"><label>New password</label><input id="pw" type="password" minlength="6" required><label>Confirm new password</label><input id="pw2" type="password" required><button class="btn t w" id="sb">Change password</button>`;
+return `<div class="auth">${left("Reset password","<p>We'll email you a code to set a new password.</p>")}<div class="r"><form onsubmit="${fp.step==1?"doForgot":"doReset"}(event)"><h1>Forgot password</h1>${b}<p class="mut"><a href="#/login" onclick="fp={step:1,email:''}">Back to sign in</a></p></form></div></div>`},
+register(){const s=reg.step,st=`<div class="steps"><b class="on"></b><b class="${s>1?"on":""}"></b><b class="${s>2?"on":""}"></b></div>`;let b;
+if(s==1)b=`<h2>Personal information</h2><div id="e" class="err"></div><form onsubmit="step1(event)">
+<label>Profile picture</label><img class="pic" id="pv" src="${reg.photo||BLANK}"><input type="file" accept="image/*" ${reg.photo?"":"required"} onchange="resize(this.files[0],d=>{reg.photo=d;$('pv').src=d})">
+<label>Full name</label><input id="nm" required value="${esc(reg.name)}"><label>Date of birth</label><input id="dob" type="date" required value="${esc(reg.dob)}">
+<label>Profession</label><select id="pf" required><option value="">Select profession</option>${["Student","Teacher","Business owner","Civil servant","Health worker","Engineer","Other"].map(x=>`<option ${reg.pf==x?"selected":""}>${x}</option>`).join("")}</select>
+<label>Email</label><input id="em" type="email" required value="${esc(reg.email)}" onblur="dupCheck()"><div id="eh" class="hint"></div><label>Phone</label><input id="ph2" required value="${esc(reg.phone)}" onblur="dupCheck()"><div id="phh" class="hint"></div>
+<label>Password</label><input id="pw" type="password" minlength="6" required><label>Confirm password</label><input id="pw2" type="password" required>
+<button class="btn t w" id="s1">Continue</button></form>`;
+else if(s==2)b=`<h2>Select programme</h2><div class="card"><b>Character Building</b><p class="mut">Level 1 Personal Competence Certification<br>Starts ${START_TXT}</p></div><br><button class="btn t w" onclick="reg.step=3;route()">Continue</button>`;
+else b=`<h2>Registration payment</h2><div class="card"><p class="mut">Registration fee</p><h1>${FEE}</h1>
+<a class="btn t w" href="${PAY_URL}" target="_blank" rel="noopener">Pay with Paystack</a>
+<p class="mut">Pay using this same email: <b>${esc(reg.email)}</b>. Payment is confirmed automatically. If you pay later, make your payment before ${START_TXT} to keep your account active for the programme.</p><p class="mut">Invited as an instructor? Skip payment and just click Complete registration.</p></div><br><div id="e" class="err"></div><button class="btn w" id="sb" onclick="finishReg()">Complete registration</button>`;
+return `<div class="auth">${left("Create your account","<p>Join the Moral IQ Character Building programme.</p>")}<div class="r"><div style="width:100%;max-width:420px"><a class="back" href="#/">← Back to home</a><h1>Register</h1>${st}${b}<p class="mut">Have an account? <a href="#/login">Sign in</a></p></div></div></div>`}};
+
+async function doLogin(e){e.preventDefault();$("sb").disabled=true;$("e").textContent="";const em=$("em").value.toLowerCase().trim();
+ const r=await api("login",{email:em,password:$("pw").value});
+ if(!r.ok){$("e").textContent=r.error||"Sign in failed.";$("sb").disabled=false;return}
+ setSess({email:em,token:r.token,role:r.role});
+ if(r.claimed)alert("Your password has been saved. Use it from now on to sign in.");
+ await load();location.hash=isT()?"#/t":"#/dashboard";route()}
+async function doForgot(e){e.preventDefault();$("sb").disabled=true;fp.email=$("em").value.toLowerCase().trim();
+ const r=await api("forgot",{email:fp.email});if(!r.ok){$("e").textContent=r.error||"Failed.";$("sb").disabled=false;return}fp.step=2;route()}
+async function doReset(e){e.preventDefault();if($("pw").value!==$("pw2").value){$("e").textContent="Passwords do not match.";return}
+ $("sb").disabled=true;const r=await api("reset",{email:fp.email,code:$("cd").value,password:$("pw").value});
+ if(!r.ok){$("e").textContent=r.error||"Failed.";$("sb").disabled=false;return}
+ alert("Password changed. Please sign in with your new password.");fp={step:1,email:""};location.hash="#/login"}
+/* Duplicate sign-up check: warns as soon as an email or phone number is already registered. */
+async function dupCheck(){const em=$("em"),ph=$("ph2");if(!em)return false;const email=em.value.toLowerCase().trim(),phone=ph.value.trim();
+ if(!email&&!phone)return false;const r=await api("checkUser",{email,phone});if(!r.ok||!$("eh"))return false;
+ $("eh").innerHTML=r.email?'This email is already registered. <a href="#/login">Sign in</a> or <a href="#/forgot">reset your password</a>.':"";
+ $("phh").textContent=r.phone?"This phone number is already registered with another account.":"";
+ return r.email||r.phone}
+async function step1(e){e.preventDefault();if($("pw").value!==$("pw2").value){$("e").textContent="Passwords do not match.";return}
+ $("s1").disabled=true;$("s1").textContent="Checking…";const dup=await dupCheck();$("s1").disabled=false;$("s1").textContent="Continue";
+ if(dup){$("e").textContent="You may already have an account. Please check the messages below.";return}
+ Object.assign(reg,{name:$("nm").value.trim(),dob:$("dob").value,pf:$("pf").value,email:$("em").value.toLowerCase().trim(),phone:$("ph2").value.trim(),pw:$("pw").value,step:2});route()}
+async function finishReg(){if($("sb").disabled)return;$("sb").disabled=true;$("sb").textContent="Creating account…";
+ const r=await api("register",{name:reg.name,email:reg.email,phone:reg.phone,dob:reg.dob,profession:reg.pf,password:reg.pw,photo:reg.photo});
+ if(!r.ok){$("e").textContent=r.error||"Registration failed.";$("sb").disabled=false;$("sb").textContent="Complete registration";if(/already/.test(r.error||""))reg.step=1;return}
+ setSess({email:reg.email,token:r.token,role:r.role||"student"});reg={step:1};await load();location.hash=isT()?"#/t":"#/dashboard";route()}
+
+/* ===== STUDENT VIEWS ===== */
+function modCard(m){const p=prog(),o=isOpen(m,p),done=p[m.no],tg=o?`a href="#/module/${m.no}"`:"div",cl=o?"a":"div";
+return `<${tg} class="card mc ${o?"":"lock"}"><div class="mi"><img src="module${m.no}.jpg" alt="" onerror="this.style.display='none'"></div><div class="mb"><div class="num">MODULE ${String(m.no).padStart(2,"0")}</div><b>${esc(m.title)}</b><div class="mut" style="margin-top:6px">${done?"✓ Completed":o?"Continue →":"🔒 "+why(m)}</div></div></${cl}>`}
+function ivCard(){const iv=S.user.interview||{},rm=(S.rooms||[]).find(x=>x.kind=="interview");return `<div class="card"><div class="num">YOUR INTERVIEW</div>${iv.done?`<h2 style="margin:6px 0">✓ Interview complete</h2><p class="mut" style="margin:0">Thank you. We'll be in touch about the next steps.</p>`
+:rm?`<h2 style="margin:6px 0">Interviews are open</h2><p class="mut">There's no time to book. When you're ready, press Start. You'll wait in the waiting room until the panel admits you, one person at a time. Have your camera and microphone ready.</p><a class="btn t" href="#/room/interview">Start my interview</a>`
+:`<p class="mut" style="margin:6px 0 0">Interviews take place online in the Moral IQ Classroom. When they're open, a <b>Start my interview</b> button appears here.</p>`}</div>`}
+function evList(withDetails){const ev=upcoming(),det=S.details||{};return ev.length?ev.map(e=>`<div class="ev"><span class="d">${evDay(e)}</span><div><b>${esc(e.title)}</b><br><span class="mut">${esc(evWhen(e))}</span>${withDetails?`<br><span style="font-size:14px">${det[e.id]?linkify(det[e.id]):esc(e.short)}</span>`:""}</div></div>`).join(""):'<p class="mut">No upcoming events.</p>'}
+const gameFull=()=>S.game&&S.game.full;
+function gameCard(compact){return `<div class="card act"><div class="ic">🎭</div><div style="flex:1"><div class="num">EMOTIONAL INTELLIGENCE · MODULE 2</div><b style="font-size:17px">Read the Room</b> <span class="pill ${gameFull()?"ok":"wt"}">${gameFull()?"Full access":"Preview · 1 scene"}</span>
+${compact?"":`<p class="mut" style="margin:6px 0 0">${gameFull()?"Six scenes. Read how someone feels, respond, and learn what to say from the model answers.":"Play one scene now. All six scenes and the model answers unlock once your payment is confirmed."}</p>`}</div><button class="btn t" id="pg" onclick="playPortalGame()">Play</button></div>`}
+const St={
+dashboard(){const p=prog(),m=mods(),n=m.filter(x=>p[x.no]).length,pc=Math.round(n/12*100),days=Math.ceil((START-Date.now())/864e5),u=S.user;
+const cur=m.find(x=>!p[x.no]&&isOpen(x,p)),op=(S.rooms||[]).filter(x=>x.open);
+return `<h1>Welcome back, ${esc(u.name.split(" ")[0])}</h1><p class="mut">Moral IQ Learning Portal</p>${u.pay=="Paid"?'<p><span class="pill ok">✓ Payment confirmed</span></p>':""}
+${u.pay!="Paid"?`<div class="ban"><b>Thanks for creating your account.</b> Make payment before ${START_TXT} to keep your account active for the programme. Pay ${FEE} using your registered email (${esc(u.email)}); it is confirmed automatically.<br><a class="btn t" style="margin:8px 8px 0 0" href="${PAY_URL}" target="_blank" rel="noopener">Pay now</a><a href="#" onclick="refresh();return false">Refresh status</a></div>`:""}
+${op.filter(x=>x.kind!="interview").map(x=>`<div class="ban t"><b>🔴 ${x.kind=="interview"?"Interviews are open":"Class open now: "+esc(x.title)}.</b> <a class="btn t" style="margin-left:8px" href="#/room/${enc(x.id)}">${x.kind=="interview"?"Start my interview":"Enter"}</a></div>`).join("")}
+${days>0?`<div class="ban t"><b>The programme starts ${START_TXT}</b> (${days} day${days>1?"s":""} to go). Modules open from that date, as your instructor activates them.</div>`:""}
+<div class="grid g2"><div class="grid" style="align-content:start">${ivCard()}<div class="card"><div class="num">PROGRAMME PROGRESS</div><h2>Character Building – Level 1</h2><div class="bar"><i style="width:${pc}%"></i></div><span class="mut">${n} of 12 modules completed (${pc}%)</span></div>
+${gameCard(true)}
+<div class="card"><h2>${cur?"Continue learning":"My Learning"}</h2>${cur?`<div class="grid g4">${modCard(cur)}</div>`:`<p class="mut">No module is open yet.</p>`}<p><a href="#/learning">View all modules →</a></p></div></div>
+<div class="grid" style="align-content:start"><div class="card"><h2>Upcoming events</h2>${evList(true)}</div><div class="card"><h2>Announcements</h2>${S.announcements.length?S.announcements.slice(0,4).map(a=>`<p><b>${esc(a.title)}</b><br><span class="mut">${esc(a.date)}</span><br>${esc(a.body)}</p>`).join(""):'<p class="mut">No announcements yet.</p>'}</div>
+${(S.instructors||[]).length?`<div class="card"><h2>Your instructors</h2>${S.instructors.map(i=>`<div style="display:flex;gap:12px;margin-bottom:12px">${i.photo?`<img class="av" style="width:48px;height:48px" src="${esc(i.photo)}">`:""}<div><b>${esc(i.name)}</b><br><span class="mut">${esc(i.title)}</span><br>${esc(i.bio)}</div></div>`).join("")}</div>`:""}</div></div>`},
+learning(){return `<h1>My Learning</h1><p class="mut">Character Building – Level 1. Modules open when your instructor activates them, one after another as you complete each.</p><div class="grid g4">${mods().map(modCard).join("")}</div>`},
+activities(){return `<h1>Learning activities</h1><p class="mut">Practise the skills from your modules by doing. Your instructors can see your activity.</p>${gameCard(false)}
+${gameFull()?"":`<div class="ban" style="margin-top:16px">Your full access opens as soon as your ${FEE} payment is confirmed. <a class="btn t" style="margin-left:8px" href="${PAY_URL}" target="_blank" rel="noopener">Pay now</a> <a href="#" onclick="refresh();return false">Refresh status</a></div>`}`},
+module(id){const m=mods()[+id-1],p=prog();if(!m)return "<p>Module not found.</p>";
+if(!isOpen(m,p))return `<p class="mut"><a href="#/learning">My Learning</a> › Module ${m.no}</p><div class="card"><h1>🔒 Module ${m.no} is locked</h1><p class="mut">${why(m)}.</p></div>`;
+const mats=F.filter(f=>f.module==m.no&&f.kind=="material"),subs=F.filter(f=>f.module==m.no&&f.kind=="submission");
+return `<p class="mut"><a href="#/learning">My Learning</a> › Module ${m.no}</p><div class="card"><div class="num">MODULE ${String(m.no).padStart(2,"0")}</div><h1>${esc(m.title)}</h1><p>${esc(m.desc)||'<span class="mut">Module content will be added by your instructor.</span>'}</p>
+<span class="pill ${p[m.no]?"ok":"wt"}">${p[m.no]?"Completed":"Awaiting instructor confirmation"}</span>${p[m.no]?"":'<p class="mut">Your instructor marks this module complete after reviewing your work. The next module opens then.</p>'}</div><br>
+${m.no==2?gameCard(false)+"<br>":""}
+<div class="card"><h2>Preparing materials</h2>${mats.length?fl(mats,false):'<p class="mut">No materials uploaded yet.</p>'}</div><br>
+<div class="card"><h2>Your submissions</h2>${fl(subs,true)}<hr><label>Upload a document</label><input type="file" id="uf"><button class="btn t" onclick="upload('uf',${m.no},'us')">Upload</button> <span id="us" class="mut"></span><p class="mut">Max 7 MB per file.</p></div>`},
+classroom(){return `<h1>Classroom</h1><p class="mut">Live classes and interviews happen here, on the Moral IQ website. Class rooms open 10 minutes before the start time. When you enter, you wait until you're let in.</p>
+${R.rooms.length?`<div class="grid" style="max-width:760px">${R.rooms.map(x=>roomRow(x,false)).join("")}</div>`:`<div class="card" style="max-width:620px"><h2>No class is scheduled for you yet</h2><p class="mut">We'll email you when a class or your interview is scheduled.</p><button class="btn" onclick="refresh()">Check again</button></div>`}`},
+resources(){return `<h1>Resources</h1><div class="card"><ul class="n">${RES.map(r=>`<li>📄 ${r}</li>`).join("")}</ul></div>`},
+calendar(){return `<h1>Events</h1><div class="grid g11"><div>${ivCard()}</div><div class="card"><h2>Upcoming events</h2>${evList(true)}</div></div><br><div class="card"><ul class="n"><li><b>${START_TXT}</b><br>Character Building – Level 1 begins.</li></ul><p class="mut">Class times and deadlines will appear here.</p></div>`},
+profile(){if(isT())return tProfile();const u=S.user;return `<h1>My Profile</h1><div class="card">${u.photo?`<img class="pic" src="${esc(u.photo)}">`:""}<h2>${esc(u.name)}</h2><p class="mut">${esc(u.email)}${u.phone?"<br>"+esc(u.phone):""}${u.pf?"<br>"+esc(u.pf):""}</p></div>`}};
+async function refresh(){await load();route()}
+const fmtGMT=ms=>new Date(ms).toLocaleString("en-GB",{timeZone:"UTC",weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})+" GMT";
+const tmGMT=ms=>new Date(ms).toLocaleTimeString("en-GB",{timeZone:"UTC",hour:"2-digit",minute:"2-digit"});
+function ivRow(x,host){return `<div class="card act" style="flex-wrap:wrap"><div class="ic">🎙️</div><div style="flex:1;min-width:200px"><div class="num">INTERVIEW${x.ivOpen?' · <span style="color:#dc2626">OPEN</span>':" · CLOSED TO PARTICIPANTS"}</div><b style="font-size:16px">Interview room</b><br><span class="mut">${host?"One shared room. Facilitators go straight in. Participants wait until the admin admits them.":"No time to book. Press Start and wait to be admitted."}</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><a class="btn t" href="#/room/interview">${host?"Enter interview room":"Start my interview"}</a>${host&&isA()?`<a class="btn g" href="#/t/interviews">Queue</a>`:""}</div></div>`}
+function roomRow(x,host){if(x.kind=="interview")return ivRow(x,host);const live=Date.now()>=x.start-6e5,who=x.kind=="class"?(x.who=="all"?"All students":(x.who.replace(/^sel:/,"").split(",").filter(Boolean).length+" selected")):"";
+return `<div class="card act" style="flex-wrap:wrap"><div class="ic">${x.kind=="interview"?"🎙️":"🎓"}</div><div style="flex:1;min-width:200px"><div class="num">${x.kind=="interview"?"INTERVIEW":"LIVE CLASS"}${live&&Date.now()<=x.end?' · <span style="color:#dc2626">OPEN</span>':""}</div><b style="font-size:16px">${esc(x.title)}</b><br><span class="mut">${esc(fmtGMT(x.start))} – ${esc(tmGMT(x.end))}${x.host?" · "+esc(x.host):""}${host&&who?" · "+who:""}</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${x.open?`<a class="btn t" href="#/room/${enc(x.id)}">${host?"Open room":"Enter"}</a>`:`<span class="mut">Opens ${esc(tmGMT(x.start-6e5))} GMT</span>`}${host&&x.kind=="class"?`<button class="btn g" onclick="endCls('${esc(x.id)}',false)">End</button><button class="btn g" onclick="endCls('${esc(x.id)}',true)">Delete</button>`:""}</div></div>`}
+
+/* ===== TEACHER VIEWS ===== */
+const payPill=p=>`<span class="pill ${p=="Paid"?"ok":"wt"}">${esc(p)}</span>`;
+const cnt=s=>Object.keys(s.progress||{}).length;
+function tHome(){const paid=T.filter(s=>s.pay=="Paid").length,comp=T.filter(s=>cnt(s)>=12).length,ivd=T.filter(s=>s.interview&&s.interview.done).length;
+return `<h1>${isA()?"Admin":"Instructor"} Dashboard</h1><p class="mut">Moral IQ · Character Building Level 1</p>${S.user.name&&S.user.name!="Admin"||isA()?"":'<div class="ban"><b>Welcome!</b> Please <a href="#/profile">complete your profile</a> so students can see who you are.</div>'}<div class="grid g4" style="margin:16px 0"><div class="card"><div class="stat">${T.length}</div>Registered students</div><div class="card"><div class="stat">${paid}</div>Payments confirmed</div><div class="card"><div class="stat">${T.length-paid}</div>Payment pending</div><div class="card"><div class="stat">${isA()?ivd:comp}</div>${isA()?`<a href="#/t/interviews">Interviews done</a>`:"Finished all modules"}</div></div>
+<div class="card"><h2>Recent registrations</h2>${tbl(T.slice(0,6))}<p><a href="#/t/students">View all students →</a></p></div>`}
+function tbl(L){if(!L.length)return '<p class="mut">No students yet.</p>';
+return `<div class="wrap"><table><tr><th>Name</th><th>Email</th><th>Phone</th><th>Payment</th><th>Progress</th><th></th></tr>${L.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.email)}</td><td>${esc(s.phone)}</td><td>${payPill(s.pay)}</td><td>${cnt(s)}/12</td><td><a href="#/t/student/${enc(s.email)}">Manage</a></td></tr>`).join("")}</table></div>`}
+function tStudents(){return `<h1>Students</h1><p class="mut">${T.length} registered</p><div class="card">${tbl(T)}</div>`}
+function tStudent(email){const s=T.find(x=>x.email==email);if(!s)return '<p>Student not found. <a href="#/t/students">Back</a></p>';
+const m=mods(),e=enc(s.email),subs=F.filter(f=>f.kind=="submission"&&f.owner==s.email),plays=G.plays.filter(p=>p.email==s.email);
+return `<p class="mut"><a href="#/t/students">Students</a> › ${esc(s.name)}</p><div class="card">${s.photo?`<img class="pic" src="${esc(s.photo)}">`:""}<h2>${esc(s.name)}</h2><p class="mut">${esc(s.email)} · ${esc(s.phone)}<br>${esc(s.pf)} · Registered ${esc(s.date)}</p>
+<p>Payment: ${payPill(s.pay)} ${isA()?`<button class="btn g" onclick="setPay('${e}','${s.pay=="Paid"?"Pending":"Paid"}')">Mark as ${s.pay=="Paid"?"pending":"paid"}</button>`:'<span class="mut">(only the admin can change payment status)</span>'}</p>
+<p>Interview: ${s.interview&&s.interview.done?`<b>✓ Done</b> <span class="mut">${esc(new Date(s.interview.done).toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}))}${s.interview.by?" · "+esc(s.interview.by):""}</span>`:'<span class="mut">Not yet</span>'}</p></div><br>
+<div class="card"><h2>Module progress</h2><p class="mut">The next module opens for the student only after you mark the previous one complete (and have activated it for them). The student is emailed that their portal has been updated.</p><ul class="n">${m.map(x=>{const d=!!s.progress[x.no];return `<li style="display:flex;gap:10px;align-items:center;justify-content:space-between"><span>${d?"✓":"○"} Module ${x.no}: ${esc(x.title)}</span><button class="btn ${d?"g":"t"}" onclick="setP('${e}',${x.no},${!d})">${d?"Undo":"Mark complete"}</button></li>`}).join("")}</ul></div><br>
+<div class="card"><h2>Read the Room plays</h2>${plays.length?playTable(plays,false):'<p class="mut">Has not played yet.</p>'}</div><br>
+<div class="card"><h2>Submitted documents</h2>${fl(subs,true,true)}</div>`}
+function tModules(){return `<h1>Modules</h1><p class="mut">Edit each module, choose who it is active for, and upload materials. Students are emailed when a module is activated for them or new material is added. Module images are module1.jpg to module12.jpg in the site folder.</p>`+mods().map(m=>{
+const mode=m.mode||"none",sel=m.sel||[],mats=F.filter(f=>f.module==m.no&&f.kind=="material"),subs=F.filter(f=>f.module==m.no&&f.kind=="submission");
+return `<div class="card" style="margin-bottom:14px"><div class="num">MODULE ${m.no}</div>
+<input id="mt${m.no}" value="${esc(m.title)}"><textarea id="md${m.no}" rows="3" placeholder="Description / lesson content">${esc(m.desc)}</textarea><button class="btn t" id="mb${m.no}" onclick="saveMod(${m.no})">Save details</button><hr>
+<label>Activation</label><select id="am${m.no}" onchange="$('as${m.no}').style.display=this.value=='sel'?'block':'none'"><option value="none" ${mode=="none"?"selected":""}>Not active</option><option value="all" ${mode=="all"?"selected":""}>Active for all students</option><option value="sel" ${mode=="sel"?"selected":""}>Active for selected students</option></select>
+<div class="chk" id="as${m.no}" style="display:${mode=="sel"?"block":"none"}">${T.length?T.map(s=>`<label style="display:block;font-weight:400"><input type="checkbox" style="width:auto;margin:0 8px 0 0" class="sc${m.no}" value="${esc(s.email)}" ${sel.indexOf(s.email)>-1?"checked":""}>${esc(s.name)} <span class="mut">${esc(s.email)}</span></label>`).join(""):'<span class="mut">No students yet.</span>'}</div>
+<button class="btn" id="ab${m.no}" onclick="saveAct(${m.no})">Save activation</button><hr>
+<b>Preparing materials</b>${fl(mats,true)}<input type="file" id="mf${m.no}"><button class="btn t" onclick="upload('mf${m.no}',${m.no},'ms${m.no}')">Upload material</button> <span id="ms${m.no}" class="mut"></span><hr>
+<b>Student submissions (${subs.length})</b>${fl(subs,true,true)}</div>`}).join("")}
+function tClass(){const now=new Date(),d=now.toISOString().slice(0,10),cls=R.rooms.filter(x=>x.kind=="class"),ivs=R.rooms.filter(x=>x.kind=="interview");
+return `<h1>Classroom</h1><p class="mut">Run live classes and interviews here on the Moral IQ website, with camera, microphone, screen sharing and raised hands. Students wait until you let them in.</p>
+${R.ready?"":isA()?lkSetup():'<div class="ban"><b>The classroom is not set up yet.</b> Ask the admin to connect it (Classroom page, as admin).</div>'}
+<div class="grid g11" style="align-items:start"><div class="card"><h2>Schedule a class</h2><div id="ce" class="err"></div><label>Title</label><input id="ct" placeholder="e.g. Module 1 – Weekend session">
+<label style="font-weight:400"><input type="checkbox" id="cnow" style="width:auto;margin:0 8px 0 0" onchange="$('cwhen').style.display=this.checked?'none':'flex'">Start now</label>
+<div class="row" id="cwhen" style="margin-top:8px"><div><label>Date</label><input type="date" id="cd" value="${d}"></div><div><label>Start (GMT)</label><input type="time" id="ctm" value="18:00"></div></div>
+<label>Length (minutes)</label><input type="number" id="cmin" value="90" min="15" max="480">
+<label>Who can join</label><select id="cwho" onchange="$('csel').style.display=this.value=='sel'?'block':'none'"><option value="all">All students</option><option value="sel">Selected students</option></select>
+<div class="chk" id="csel" style="display:none">${T.length?T.map(s=>`<label style="display:block;font-weight:400"><input type="checkbox" style="width:auto;margin:0 8px 0 0" class="csc" value="${esc(s.email)}">${esc(s.name)} <span class="mut">${esc(s.email)}</span></label>`).join(""):'<span class="mut">No students yet.</span>'}</div>
+<label style="font-weight:400"><input type="checkbox" id="cmail" checked style="width:auto;margin:0 8px 0 0">Email the invited students</label><br><br>
+<button class="btn t" id="cb" onclick="mkCls()">Schedule class</button></div>
+<div class="grid"><div><h2>Classes</h2>${cls.length?`<div class="grid">${cls.map(x=>roomRow(x,true)).join("")}</div>`:'<p class="mut">No classes scheduled.</p>'}</div>
+<div><h2>Interviews</h2>${ivs.length?`<div class="grid">${ivs.map(x=>roomRow(x,true)).join("")}</div>`:""}</div></div></div>
+${R.ready&&isA()?`<details style="margin-top:20px"><summary class="mut">Classroom connection settings</summary>${lkSetup()}</details>`:""}`}
+function lkSetup(){const c=(MH&&MH.classroom)||{};return `<div class="card" style="margin:16px 0"><h2>Connect the classroom (one time)</h2><p class="mut">Video runs on LiveKit, a professional video service with a free plan. 1) Create a free account at <a href="https://cloud.livekit.io" target="_blank" rel="noopener">cloud.livekit.io</a> and create a project. 2) Open Settings › API keys › Create key. 3) Paste the three values below and click Save.</p>
+<div id="lke" class="err"></div><label>Project URL (starts with wss://)</label><input id="lku" value="${esc(c.url||"")}" placeholder="wss://your-project.livekit.cloud"><div class="row"><div><label>API key</label><input id="lkk" value="${esc(c.key||"")}"></div><div><label>API secret</label><input id="lks" type="password" placeholder="${c.key?"(saved – paste only to change)":""}"></div></div>
+<button class="btn t" onclick="saveLk()">Save</button> <span id="lkr" class="mut"></span></div>`}
+async function saveLk(){const r=await api("saveClassroomSetup",{url:$("lku").value,key:$("lkk").value,secret:$("lks").value});if(!r.ok){$("lke").textContent=r.error;return}$("lkr").textContent="Saved ✓";await loadR();await loadMH();route()}
+async function mkCls(){const now=$("cnow").checked,[y,mo,da]=$("cd").value.split("-").map(Number),[hh,mm]=$("ctm").value.split(":").map(Number);
+ const emails=[...document.querySelectorAll(".csc:checked")].map(x=>x.value);$("cb").disabled=true;
+ const r=await api("createClass",{title:$("ct").value,now,start:now?0:Date.UTC(y,mo-1,da,hh,mm),minutes:+$("cmin").value,who:$("cwho").value,emails,notify:$("cmail").checked});
+ $("cb").disabled=false;if(!r.ok){$("ce").textContent=r.error;return}
+ if(r.mail&&r.mail.total)alert("Class scheduled. Emailed "+r.mail.sent+" of "+r.mail.total+" students."+(r.mail.error?" Problem: "+r.mail.error:""));
+ if(now){location.hash="#/room/"+r.id;return}await loadR();route()}
+async function endCls(id,remove){if(!confirm(remove?"Delete this class?":"End this class for everyone?"))return;await api("endClass",{id,remove});await loadR();route()}
+function tAnnounce(){return `<h1>Announcements</h1><div class="card" style="margin-bottom:16px"><input id="at" placeholder="Title"><textarea id="ab" rows="3" placeholder="Message"></textarea><label style="font-weight:400"><input type="checkbox" id="an" checked style="width:auto;margin:0 8px 0 0">Email all students that their portal has been updated</label><br><br><button class="btn t" id="pab" onclick="postAnn()">Post announcement</button><div id="anr" class="mut" style="margin-top:10px"></div></div>
+<div class="card">${S.announcements.length?S.announcements.map(a=>`<p><b>${esc(a.title)}</b> <span class="mut">${esc(a.date)}</span><br>${esc(a.body)}<br><a href="#" onclick="delAnn('${esc(a.id)}');return false">Delete</a></p>`).join(""):'<p class="mut">Nothing posted yet.</p>'}</div>`}
+function tProfile(){const u=S.user;tp="";return `<h1>My Profile</h1><div class="card" style="max-width:520px"><img class="pic" id="tpv" src="${u.photo?esc(u.photo):BLANK}"><label>Profile picture</label><input type="file" accept="image/*" onchange="resize(this.files[0],d=>{tp=d;$('tpv').src=d})">
+<label>Full name</label><input id="pn" value="${esc(u.name)}"><label>Title</label><input id="pt" value="${esc(u.title)}" placeholder="e.g. Lead Instructor"><label>Phone</label><input id="pp" value="${esc(u.phone)}"><label>About you</label><textarea id="pb" rows="4">${esc(u.bio)}</textarea>
+<p class="mut">${esc(u.email)}${u.admin?" · Admin accounts are not shown in the public team list.":""}</p><button class="btn t" id="psb" onclick="saveProf()">Save profile</button></div>`}
+
+function tInstr(){return `<h1>Instructors</h1><div class="card" style="max-width:640px;margin-bottom:16px"><div id="ie" class="err"></div><label>Add an instructor by email</label><input id="ie2" type="email" placeholder="name@example.com"><button class="btn t" onclick="addInstr()">Add instructor</button>
+<p class="mut">When this person creates an account at moral-iq.com with this email, they become an instructor. If they already have a student account, it is converted (their student progress is removed) and their existing password keeps working. Instructors appear in the Team section of the homepage automatically once they have signed up.</p></div>
+<div class="card"><h2>Instructors</h2><ul class="n">${I.map(i=>`<li style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span><b>${esc(i.name||"Not signed up yet")}</b> ${i.lead?'<span class="pill ok">Lead</span>':""}${i.admin?'<span class="pill bl">Admin</span>':""} <span class="pill ${i.claimed?"ok":"wt"}">${i.claimed?"Active":"Invited"}</span><br><span class="mut">${esc(i.email)}</span></span>${i.lead||i.admin?"":`<a href="#" onclick="rmInstr('${enc(i.email)}');return false">Remove</a>`}</li>`).join("")}</ul></div>`}
+async function addInstr(){const r=await api("addInstructor",{target:$("ie2").value});if(!r.ok){$("ie").textContent=r.error;return}await loadI();route()}
+async function rmInstr(e){if(!confirm("Remove this instructor? They will lose instructor access."))return;const r=await api("removeInstructor",{target:dec(e)});if(!r.ok)alert(r.error);await loadI();route()}
+const ago=t=>{if(!t)return "—";const m=Math.floor((Date.now()-t)/60000);if(m<1)return "just now";if(m<60)return m+" min ago";const h=Math.floor(m/60);if(h<24)return h+" hr ago";const d=Math.floor(h/24);return d+" day"+(d>1?"s":"")+" ago"};
+function playTable(L,who){return `<div class="wrap"><table><tr>${who?"<th>Who</th>":""}<th>Scene</th><th>Reading</th><th>Helped?</th><th>Access</th><th>When</th></tr>${L.map(p=>`<tr>${who?`<td>${esc(p.name||p.email)}${p.role=="participant"?` <a href="#/t/student/${enc(p.email)}">View</a>`:' <span class="mut">(instructor)</span>'}</td>`:""}<td>${esc(p.scene)}</td><td>${p.reading}%</td><td>${p.helped?'<span class="pill ok">Yes</span>':'<span class="pill wt">No</span>'}</td><td>${esc(p.access)}</td><td>${ago(p.at)}</td></tr>`).join("")}</table></div>`}
+function tActivity(){const L=T.filter(s=>s.lastLogin).sort((a,b)=>b.lastLogin-a.lastLogin).slice(0,25),M=T.filter(s=>s.lastModuleAt).sort((a,b)=>b.lastModuleAt-a.lastModuleAt).slice(0,25);
+const tb=(h,rows)=>rows.length?`<div class="wrap"><table><tr><th>Student</th><th>${h}</th><th></th></tr>${rows.join("")}</table></div>`:'<p class="mut">Nothing recorded yet.</p>';
+const row=(s,x)=>`<tr><td>${esc(s.name)}</td><td>${x}</td><td><a href="#/t/student/${enc(s.email)}">View</a></td></tr>`;
+const players=new Set(G.plays.filter(p=>p.role=="participant").map(p=>p.email)).size;
+return `<h1>Activity</h1><p class="mut">Who has been active recently. A student appears here after their next sign-in, module view or game play.</p>
+<div class="grid g4" style="margin-bottom:16px"><div class="card"><div class="stat">${players}</div>Participants who played Read the Room</div><div class="card"><div class="stat">${G.plays.length}</div>Game rounds played in the portal</div><div class="card"><div class="stat">${G.homePlays||0}</div>Homepage visitors who finished the preview</div></div>
+<div class="card" style="margin-bottom:16px"><h2>Played the learning activity (Read the Room)</h2>${G.plays.length?playTable(G.plays.slice(0,60),true):'<p class="mut">Nobody has played in the portal yet.</p>'}</div>
+<div class="grid g11"><div class="card"><h2>Recently signed in</h2>${tb("Last sign-in",L.map(s=>row(s,ago(s.lastLogin))))}</div><div class="card"><h2>Recently viewed a module</h2>${tb("Module",M.map(s=>row(s,"Module "+s.lastModule+" · "+ago(s.lastModuleAt))))}</div></div>`}
+function mailCard(){if(!isA())return "";const h=MH||{};return `<div class="card" style="max-width:680px;margin-top:16px"><h2>Email status</h2>
+${h.error?`<div class="ban"><b>Email is not authorised.</b> Open the Apps Script editor, choose <b>authorizeAll</b> and click Run, then allow access. Google says: ${esc(h.error)}</div>`:""}
+<p>Sending from: <b>${esc(h.me||"unknown")}</b><br>Emails left today: <b>${h.quota==null?"unknown":h.quota}</b> <span class="mut">(each recipient counts; a free Gmail account allows about 100 a day, Google Workspace about 1,500)</span></p>
+<div class="row"><input id="tm" type="email" placeholder="Send a test email to… (blank = you)"><button class="btn t" style="flex:none;margin:4px 0 12px" onclick="testMail()">Send test</button></div><div id="tmr" class="mut"></div>
+<b>Recent email problems</b>${(h.logs||[]).length?`<ul class="n">${h.logs.map(l=>`<li><span class="mut">${esc(l.date.slice(0,16).replace("T"," "))}</span><br>${esc(l.msg)}</li>`).join("")}</ul>`:'<p class="mut">None logged.</p>'}</div>`}
+async function testMail(){$("tmr").textContent="Sending…";const r=await api("testMail",{to:$("tm").value});$("tmr").textContent=r.ok?"Sent to "+r.to+". Check the inbox and the spam folder.":"Failed: "+(r.error||"unknown error")}
+function tMessages(){const paid=T.filter(s=>s.pay=="Paid").length,un=T.length-paid;
+return `<h1>Messages</h1><p class="mut">Email a group of students in one click.</p><div class="card" style="max-width:680px"><h2>Interview notice</h2><div id="me" class="okm"></div>
+<p class="mut">Tells students to prepare for the online interview. There's no time to book: they sign in, open Classroom, press Start my interview and wait to be admitted. The interview helps us get to know them and match them with their pair.</p>
+<p><b>Paid students:</b> the notice only.<br><b>Unpaid students:</b> the notice plus a reminder to pay ${FEE} before ${START_TXT}, with a Pay link.</p>
+<button class="btn t" id="mp" onclick="sendInt('paid')" ${paid?"":"disabled"}>Send to paid students (${paid})</button> <button class="btn" id="mu" onclick="sendInt('unpaid')" ${un?"":"disabled"}>Send to unpaid students (${un})</button>
+<label style="font-weight:400"><input type="checkbox" id="magain" style="width:auto;margin:0 8px 0 0">Send again to everyone in the group (use this if earlier emails didn't arrive)</label>
+<p class="mut">Each student gets their own email. Without the tick above, pressing a button again only sends to people who haven't received it yet.</p></div>${mailCard()}`}
+async function sendInt(g){if(!confirm("Send the interview notice to all "+g+" students now?"))return;const b=$(g=="paid"?"mp":"mu");b.disabled=true;$("me").textContent="Sending… please wait (about 1 second per student).";
+ const r=await api("sendInterview",{group:g,again:$("magain").checked});b.disabled=false;const m=r.mail||{};
+ $("me").textContent=r.ok?"Sent to "+m.sent+" students."+(r.already?" "+r.already+" had already received it.":"")+(m.skipped?" "+m.skipped+" not sent"+(m.error?" ("+m.error+")":" because the daily email limit was reached: press the button again tomorrow")+".":""):(r.error||"Failed.")}
+
+/* ----- admin: interviews (one shared room, no set times; the admin admits or queues each participant) ----- */
+let IVQ=null,IVT=0;
+const ivSt={waiting:["Just arrived","wt"],queued:["Queued","wt"],admitted:["In the room","ok"]};
+function ivQueueHtml(q,can,inRoom){if(!q||!q.length)return '<p class="mut">Nobody is waiting.</p>';
+ return q.map((w,i)=>{const e=enc(w.email),st=ivSt[w.status]||[w.status,""],mins=Math.max(0,Math.round((Date.now()-w.at)/60000));
+  return `<div class="pp"><div class="a">${initials(w.name)}</div><div style="flex:1">${esc(w.name)} <span class="pill ${st[1]}">${st[0]}</span><br><span class="mut" ${inRoom?'style="color:#9fb3c8"':""}>${esc(w.email)} · ${mins} min</span></div>
+  ${can?`<div class="x">${w.status=="admitted"?`<button class="sm2 g" onclick="ivSet('${e}','done')">Done</button>`:`<button class="sm2 g" onclick="ivSet('${e}','admitted')">Admit</button>${w.status=="waiting"?`<button class="sm2" onclick="ivSet('${e}','queued')">Queue</button>`:""}`}<button class="sm2 r" onclick="ivSet('${e}','denied')" title="Remove from the line">✕</button></div>`:""}</div>`}).join("")}
+async function ivSet(e,status){const email=dec(e);
+ if(status=="done"&&!confirm("Mark this interview as done? They'll be taken out of the room."))return;
+ if(status=="denied"&&!confirm("Remove this person from the line?"))return;
+ const r=await api("admit",{id:"interview",student:email,status});if(!r.ok){alert(r.error||"Could not update.");return}
+ if(RM&&RM.lk&&RM.id=="interview"){clearTimeout(RM.lpoll);pollLobby()}else ivPoll(true)}
+async function ivPoll(once){clearTimeout(IVT);if(!/^#\/t\/interviews/.test(location.hash))return;const r=await api("lobby",{id:"interview"});
+ if(r.ok){IVQ=r;const q=$("ivq");if(q)q.innerHTML=ivQueueHtml(r.queue,r.canAdmit,false);const c=$("ivqn");if(c)c.textContent=r.queue.filter(x=>x.status!="admitted").length}
+ IVT=setTimeout(ivPoll,5000)}
+async function ivToggle(open){const r=await api("setInterviewsOpen",{open});if(!r.ok){alert(r.error);return}await loadR();route()}
+function tInterviews(){const rm=(R.rooms||[]).find(x=>x.kind=="interview")||{},open=!!rm.ivOpen,done=T.filter(s=>s.interview&&s.interview.done).sort((a,b)=>b.interview.done-a.interview.done);
+ setTimeout(()=>ivPoll(true),0);
+return `<h1>Interviews</h1><p class="mut">There are no set times. Facilitators go straight into the interview room. Each participant presses <b>Start my interview</b> and waits in the waiting room until you admit them. Press <b>Queue</b> to tell someone the panel is with another person and they'll be admitted soon. When an interview ends, press <b>Done</b>, then admit the next person.</p>
+<div class="card" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px"><div style="flex:1;min-width:220px"><b>Interviews are ${open?'<span style="color:#15803d">open</span>':'<span style="color:#b91c1c">closed</span>'} to participants</b><br><span class="mut">${open?"Participants see a Start my interview button in their portal.":"Participants can't start an interview until you open it."}</span></div>
+<button class="btn ${open?"g":"t"}" onclick="ivToggle(${!open})">${open?"Close interviews":"Open interviews"}</button><a class="btn t" href="#/room/interview">Enter interview room</a></div>
+${R.ready?"":'<div class="ban"><b>The classroom is not set up yet.</b> Connect it under Classroom first.</div>'}
+<div class="grid g11" style="align-items:start"><div class="card"><h2>Waiting line (<span id="ivqn">…</span>)</h2><div id="ivq" class="ivq"><p class="mut">Loading…</p></div><p class="mut" style="margin-top:10px">Updates every few seconds. You can also admit people from the People panel inside the interview room.</p></div>
+<div class="card"><h2>Interviewed (${done.length} of ${T.length})</h2>${done.length?`<div class="wrap"><table><tr><th>Participant</th><th>When</th></tr>${done.map(s=>`<tr><td><b>${esc(s.name)}</b><br><span class="mut">${esc(s.email)}</span></td><td>${esc(new Date(s.interview.done).toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}))}${s.interview.by?`<br><span class="mut">${esc(s.interview.by)}</span>`:""}</td></tr>`).join("")}</table></div>`:'<p class="mut">No interviews done yet.</p>'}</div></div>`}
+/* ----- admin: website editor ----- */
+const W=(id,label,val,rows)=>`<label>${label}</label>${rows?`<textarea id="${id}" rows="${rows}">${esc(val)}</textarea>`:`<input id="${id}" value="${esc(val)}">`}`;
+function tWebsite(){const s=SITE,det=S.details||{};
+return `<h1>Website</h1><p class="mut">Change what visitors see on the homepage. No code needed: edit, then click Save. <a href="#/" target="_blank">Open the homepage</a></p>
+<div class="grid g11" style="align-items:start"><div class="grid">
+<div class="card"><h2>Top of the page</h2>${W("w_eyebrow","Small label above the title",s.eyebrow)}${W("w_heroTitle","Main title (wrap words in &lt;em&gt;…&lt;/em&gt; to colour them teal)",s.heroTitle)}${W("w_heroText","Short description",s.heroText,3)}</div>
+<div class="card"><h2>About</h2>${W("w_aboutTitle","Heading",s.aboutTitle)}${W("w_aboutText","Text",s.aboutText,5)}${(s.pillars||[]).map((p,i)=>`<div class="row"><div>${W("w_pt"+i,"Point "+(i+1),p.t)}</div><div>${W("w_pd"+i,"Detail",p.d)}</div></div>`).join("")}</div>
+<div class="card"><h2>Course</h2>${W("w_courseTitle","Course name",s.courseTitle)}${W("w_courseTag","Label",s.courseTag)}${W("w_courseText","Text",s.courseText,3)}
+<label>Programme start date (modules open and payment deadline)</label><input type="date" id="w_start" value="${esc(START_ISO)}"></div>
+</div><div class="grid">
+<div class="card"><h2>Events</h2><p class="mut">Events show on the homepage until their last day has passed. "Members-only details" are shown only to signed-in participants (for example the orientation link).</p><div id="evs">${(s.events||[]).map((e,i)=>evEdit(e,i,det[e.id]||"")).join("")}</div><button class="btn g" onclick="addEv()">+ Add event</button></div>
+<div class="card"><h2>Assess your Moral IQ (game)</h2><label style="font-weight:400"><input type="checkbox" id="w_showGame" ${s.showGame?"checked":""} style="width:auto;margin:0 8px 0 0">Show the game on the homepage</label><br><br>${W("w_assessTitle","Label",s.assessTitle)}${W("w_assessSub","Heading",s.assessSub)}${W("w_assessText","Text",s.assessText,2)}</div>
+<div class="card"><h2>Team and closing</h2>${W("w_teamTitle","Team heading",s.teamTitle)}${W("w_teamText","Team text",s.teamText)}${W("w_joinTitle","Closing heading",s.joinTitle)}${W("w_joinText","Closing text",s.joinText,2)}${W("w_contact","Contact emails (shown at the bottom of the homepage)",s.contact)}<p class="mut">Team members come from instructor profiles (Instructors and My Profile).</p></div>
+<div class="card"><h2>Full game file</h2><p class="mut">Paid participants play the full Read the Room game from this file. Upload <b>read-the-room-full.html</b>. It stays private in your Google Drive.</p><p>Status: ${MH&&MH.gameFileAt?`<span class="pill ok">Uploaded ${esc(MH.gameFileAt.slice(0,10))}</span>`:'<span class="pill wt">Not uploaded yet</span>'}</p><input type="file" id="gfile" accept=".html,text/html"><button class="btn t" id="gfb" onclick="uploadGame()">Upload game</button> <span id="gfs" class="mut"></span></div>
+</div></div><div style="position:sticky;bottom:0;background:var(--bg);padding:14px 0;margin-top:10px"><button class="btn t" id="wsb" style="padding:12px 26px" onclick="saveSite()">Save website</button> <span id="wsr" class="mut"></span></div>`}
+function evEdit(e,i,det){return `<div class="ive evi" data-i="${i}"><input class="e_id" type="hidden" value="${esc(e.id)}">${W("e_t"+i,"Title",e.title)}<div class="row"><div><label>Date</label><input type="date" id="e_d${i}" value="${esc(e.date)}"></div><div><label>Second day (optional)</label><input type="date" id="e_d2${i}" value="${esc(e.date2||"")}"></div><div>${W("e_tm"+i,"Time or place",e.time)}</div></div>
+${W("e_s"+i,"One-line summary",e.short)}${W("e_x"+i,"Event page text",e.text,2)}${W("e_m"+i,"Members-only details (optional)",det,2)}<a href="#" onclick="this.closest('.evi').remove();return false">Remove event</a></div>`}
+function addEv(){const i=Date.now()%1e6,d=document.createElement("div");d.innerHTML=evEdit({id:"ev"+i,title:"",date:"",date2:"",time:"",short:"",text:""},i,"");$("evs").appendChild(d.firstChild)}
+async function saveSite(){const v=id=>($(id)?$(id).value.trim():""),s={},details={};
+ ["eyebrow","heroTitle","heroText","aboutTitle","aboutText","courseTitle","courseTag","courseText","assessTitle","assessSub","assessText","teamTitle","teamText","joinTitle","joinText","contact"].forEach(k=>s[k]=v("w_"+k));
+ s.showGame=$("w_showGame").checked;s.pillars=(SITE.pillars||[]).map((p,i)=>({t:v("w_pt"+i),d:v("w_pd"+i)}));
+ s.events=[...document.querySelectorAll(".evi")].map(el=>{const i=el.dataset.i,id=el.querySelector(".e_id").value;const m=v("e_m"+i);if(m)details[id]=m;
+  return {id,title:v("e_t"+i),date:v("e_d"+i),date2:v("e_d2"+i),time:v("e_tm"+i),short:v("e_s"+i),text:v("e_x"+i)}}).filter(e=>e.title);
+ if(s.events.some(e=>!e.date)){$("wsr").textContent="Every event needs a date.";return}
+ $("wsb").disabled=true;$("wsr").textContent="Saving…";const r=await api("saveSite",{site:s,details,start:$("w_start").value});$("wsb").disabled=false;
+ if(!r.ok){$("wsr").textContent=r.error;return}await load();await loadSite();$("wsr").textContent="Saved ✓ The homepage now shows your changes."}
+async function uploadGame(){const f=$("gfile").files[0];if(!f){$("gfs").textContent="Choose the file first.";return}$("gfb").disabled=true;$("gfs").textContent="Uploading… (about 2 MB)";
+ const data=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result.split(",")[1]);r.readAsDataURL(f)});
+ const r=await api("uploadGame",{data});$("gfb").disabled=false;$("gfs").textContent=r.ok?"Uploaded ✓ Paid participants now get the full game.":(r.error||"Upload failed.");if(r.ok){GAME_HTML="";await loadMH()}}
+
+async function setP(e,n,d){const r=await api("setProgress",{student:dec(e),module:n,done:d});if(!r.ok)alert(r.error);await loadT();route()}
+async function setPay(e,st){const r=await api("setPay",{student:dec(e),status:st});if(!r.ok)alert(r.error);else if(st=="Paid")alert(r.mailed?"Marked as paid. A confirmation email was sent to the student.":"Marked as paid. (The confirmation email could not be sent: check Messages › Email status.)");await loadT();route()}
+async function saveMod(n){const b=$("mb"+n);b.disabled=true;const r=await api("saveModule",{no:n,title:$("mt"+n).value,desc:$("md"+n).value});b.disabled=false;b.textContent=r.ok?"Saved ✓":"Failed";if(r.ok)await load();setTimeout(()=>{b.textContent="Save details"},1800)}
+async function saveAct(n){const b=$("ab"+n);b.disabled=true;const emails=[...document.querySelectorAll(".sc"+n+":checked")].map(x=>x.value);
+ const r=await api("setActive",{no:n,mode:$("am"+n).value,emails});b.disabled=false;b.textContent=r.ok?(r.mail&&r.mail.sent?"Saved ✓ "+r.mail.sent+" emailed":"Saved ✓"):"Failed";if(r.ok)await load();setTimeout(()=>{b.textContent="Save activation"},2500)}
+async function saveProf(){const b=$("psb");b.disabled=true;const r=await api("saveProfile",{name:$("pn").value,title:$("pt").value,phone:$("pp").value,bio:$("pb").value,photo:tp});
+ if(!r.ok){alert(r.error);b.disabled=false;return}await load();alert("Profile saved");route()}
+async function postAnn(){if(!$("at").value.trim())return;$("pab").disabled=true;$("anr").textContent="Posting…";const n=$("an").checked;const r=await api("addAnnouncement",{title:$("at").value,body:$("ab").value,notify:n});
+ if(!r.ok)alert(r.error);else if(r.mail){const m=r.mail;alert("Posted. Email sent to "+m.sent+" of "+m.total+" students."+(m.skipped?" "+m.skipped+" were not emailed"+(m.error?": "+m.error:" (daily email limit reached or invalid address; see Messages › Email status)")+".":""))}
+ await load();route()}
+async function delAnn(id){await api("delAnnouncement",{id});await load();route()}
+
+/* ===== CLASSROOM (live video on LiveKit; Moral IQ decides who is let in) ===== */
+const LK_JS="https://cdn.jsdelivr.net/npm/livekit-client@2.22.3/dist/livekit-client.umd.js";
+let RM=null;
+function lkLoad(){return window.LivekitClient?Promise.resolve():new Promise((ok,no)=>{const sc=document.createElement("script");sc.src=LK_JS;sc.onload=ok;sc.onerror=()=>no(new Error("Could not load the video library. Check your internet connection."));document.head.appendChild(sc)})}
+const initials=n=>esc(String(n||"?").trim().split(/\s+/).map(w=>w[0]).slice(0,2).join("").toUpperCase());
+function roomShell(inner){return `<div class="rm"><div class="bar1"><img src="${LOGO}" alt="" style="height:30px;border-radius:4px" onerror="this.style.display='none'"><b>${esc(RM.info?RM.info.title:"Classroom")}</b>${RM.lk?`<span class="live"><i></i>LIVE <span id="rclock"></span></span>`:""}<span class="sp"></span><span class="pill">${RM.host?"Host":"Participant"}</span></div>${inner}</div>`}
+async function roomPage(id){leaveRoom(true);const host=isT();RM={id,host,mic:true,cam:true,tab:"people",chat:[],waiting:[],tiles:{},unread:0,hand:false};
+ const A=$("app");A.innerHTML=roomShell(`<div class="pre"><div class="spin"></div></div>`);
+ const r=await api("rooms");if(!RM||RM.id!==id)return;const info=(r.rooms||[]).find(x=>x.id===id);RM.info=info;
+ if(!r.ready){A.innerHTML=roomShell(`<div class="pre"><div style="max-width:520px;text-align:center"><h1>The classroom isn't set up yet</h1><p>${isA()?'Open Classroom in your portal and connect it (one time).':'Please let your instructor know.'}</p><a class="btn t" href="#/${host?"t/classroom":"classroom"}">Back</a></div></div>`);return}
+ if(!info){A.innerHTML=roomShell(`<div class="pre"><div style="max-width:520px;text-align:center"><h1>This room isn't available</h1><p>It may have ended, or it isn't open for you yet.</p><a class="btn t" href="#/${host?"t/classroom":"classroom"}">Back to Classroom</a></div></div>`);return}
+ preJoin()}
+function preJoin(){const host=RM.host,info=RM.info,early=!host&&Date.now()<info.start-6e5;
+ $("app").innerHTML=roomShell(`<div class="pre"><div class="box2"><div class="pv"><video id="pvv" autoplay muted playsinline></video><div class="avt" id="pva" style="position:absolute;inset:0;display:none;place-items:center"><span style="width:90px;height:90px;border-radius:50%;background:var(--navy2);display:grid;place-items:center;font-size:34px;font-weight:700">${initials(S.user.name)}</span></div>
+ <div class="t2"><button class="cb ${RM.mic?"":"off"}" id="pmic" title="Microphone" onclick="RM.mic=!RM.mic;this.classList.toggle('off',!RM.mic)">🎤</button><button class="cb ${RM.cam?"":"off"}" id="pcam" title="Camera" onclick="RM.cam=!RM.cam;this.classList.toggle('off',!RM.cam);preview()">📷</button></div></div>
+ <div><div class="num">${info.kind=="interview"?"INTERVIEW":"LIVE CLASS"}</div><h1>${esc(info.title)}</h1>${info.kind=="interview"?"":`<p>${esc(fmtGMT(info.start))} – ${esc(tmGMT(info.end))}</p>`}
+ <p>${info.kind=="interview"?(host?"You're a facilitator, so you go straight in. "+(isA()?"Participants wait in the waiting line until you admit them.":"The admin admits participants one at a time."):"Check your camera and microphone, then press Start. You'll wait in the waiting room until the panel admits you."):host?"You're the host. Participants wait until you let them in.":"Check your camera and microphone, then ask to join. Your instructor will let you in."}</p><div id="pje" class="err"></div>
+ <button class="btn t" style="padding:14px 26px;font-size:16px" id="pjb" onclick="askJoin()" ${early?"disabled":""}>${host?"Join now":info.kind=="interview"?"Start my interview":"Ask to join"}</button> <a class="btn g" href="#/${host?"t/classroom":"classroom"}">Back</a>
+ ${early?`<p>This room opens at ${esc(tmGMT(info.start-6e5))} GMT.</p>`:""}</div></div></div>`);preview()}
+async function preview(){const v=$("pvv");if(!v)return;if(RM.pstream){RM.pstream.getTracks().forEach(t=>t.stop());RM.pstream=null}
+ $("pva").style.display=RM.cam?"none":"grid";if(!RM.cam){v.srcObject=null;return}
+ try{RM.pstream=await navigator.mediaDevices.getUserMedia({video:true,audio:false});if(RM&&$("pvv"))$("pvv").srcObject=RM.pstream;else RM.pstream.getTracks().forEach(t=>t.stop())}
+ catch(e){$("pje").textContent="Camera not available ("+e.name+"). You can still join with your camera off.";RM.cam=false;$("pcam").classList.add("off");$("pva").style.display="grid"}}
+function stopPreview(){if(RM&&RM.pstream){RM.pstream.getTracks().forEach(t=>t.stop());RM.pstream=null}}
+async function askJoin(){const b=$("pjb");b.disabled=true;b.textContent=RM.host?"Joining…":"Asking…";
+ try{await lkLoad()}catch(e){$("pje").textContent=e.message;b.disabled=false;b.textContent="Try again";return}
+ const r=await api(RM.host?"hostJoin":"knock",{id:RM.id});if(!RM)return;
+ if(!r.ok){$("pje").textContent=r.error||"Could not join.";b.disabled=false;b.textContent=RM.host?"Join now":"Ask to join";return}
+ if(r.status==="admitted")return connect(r);stopPreview();waitScreen(r.status,r.ahead)}
+function waitScreen(status,ahead){const denied=status==="denied",iv=RM.info&&RM.info.kind=="interview";
+ const line=iv&&ahead>0?`<p><b>${ahead} ${ahead>1?"people are":"person is"} ahead of you.</b></p>`:"";
+ $("app").innerHTML=roomShell(`<div class="pre"><div style="max-width:520px;text-align:center;display:grid;justify-items:center">${status==="done"?`<h1>Your interview is complete</h1><p>Thank you for your time. We'll be in touch about the next steps.</p>`
+ :denied?`<h1>You weren't let in</h1><p>${iv?"The panel took you out of the waiting line.":"The host declined your request."} If you think this is a mistake, ask again.</p><button class="btn t" onclick="knockAgain()">Ask again</button>`
+ :iv&&status==="queued"?`<div class="spin"></div><h1>The panel is with someone right now</h1><p>Please wait. You'll be admitted soon.</p>${line}<p>Keep this page open. You'll join automatically when it's your turn.</p>`
+ :iv?`<div class="spin"></div><h1>You're in the waiting room</h1><p>The panel will admit you shortly.</p>${line}<p>Keep this page open, with your camera and microphone ready. You'll join automatically when it's your turn.</p>`
+ :`<div class="spin"></div><h1>Waiting for the host to let you in…</h1><p>Please keep this page open. You'll join automatically as soon as you're admitted.</p>`}<p><a href="#/classroom" style="color:#9fd8d4">Leave</a></p></div></div>`);
+ clearTimeout(RM.poll);if(!denied&&status!=="done")RM.poll=setTimeout(pollKnock,iv?5000:3000)}
+async function pollKnock(){if(!RM||RM.lk)return;const r=await api("knock",{id:RM.id});if(!RM||RM.lk)return;
+ if(r.ok&&r.status==="admitted")return connect(r);if(r.ok&&r.status!==RM.lastSt||r.ok&&r.ahead!==RM.lastAhead){RM.lastSt=r.status;RM.lastAhead=r.ahead;return waitScreen(r.status,r.ahead)}
+ if(!r.ok&&!/Network/.test(r.error||""))return waitScreen("denied");RM.poll=setTimeout(pollKnock,RM.info&&RM.info.kind=="interview"?5000:3000)}
+async function knockAgain(){const r=await api("knock",{id:RM.id,again:true});if(r.ok&&r.status==="admitted")return connect(r);waitScreen(r.ok?r.status:"denied",r.ahead)}
+async function connect(r){stopPreview();const L=window.LivekitClient,room=new L.Room({adaptiveStream:true,dynacast:true});RM.lk=room;RM.started=Date.now();
+ const E=L.RoomEvent,sync=()=>syncRoom();
+ [E.ParticipantConnected,E.ParticipantDisconnected,E.TrackSubscribed,E.TrackUnsubscribed,E.TrackMuted,E.TrackUnmuted,E.LocalTrackPublished,E.LocalTrackUnpublished,E.ActiveSpeakersChanged,E.ParticipantAttributesChanged].forEach(ev=>room.on(ev,sync));
+ room.on(E.ParticipantConnected,p=>toast(esc(p.name||p.identity)+" joined"));
+ room.on(E.DataReceived,(payload,p)=>{let m;try{m=JSON.parse(new TextDecoder().decode(payload))}catch(e){return}onData(m,p)});
+ room.on(E.Disconnected,why=>{if(!RM||RM.lk!==room||RM.leaving)return;const D=L.DisconnectReason||{};
+  if(why===D.PARTICIPANT_REMOVED&&RM.info&&RM.info.kind=="interview"&&!RM.host){const id=RM.id,info=RM.info;leaveRoom(true);RM={id,host:false,tiles:{},info};return waitScreen("done")}
+  endedScreen(why===D.ROOM_DELETED?"The class has ended.":why===D.PARTICIPANT_REMOVED?"The host removed you from the room.":"You've been disconnected from the room.")});
+ room.on(E.AudioPlaybackStatusChanged,()=>{if(!room.canPlaybackAudio)toast('Sound is blocked by your browser. <button class="sm2 g" onclick="RM.lk.startAudio();this.parentNode.remove()">Turn on sound</button>',0)});
+ $("app").innerHTML=roomShell(`<div class="body"><div class="stage" id="stage"></div><aside class="side2 ${innerWidth<860?"hide":""}" id="rside"><div class="tabs"><button id="tbp" onclick="rTab('people')">People</button><button id="tbc" onclick="rTab('chat')">Chat</button></div><div class="pane" id="rpane"></div><div class="chatin" id="rchat" style="display:none"><input id="rmsg" placeholder="Message everyone" onkeydown="if(event.key=='Enter')sendChat()"><button class="sm2 g" onclick="sendChat()">Send</button></div></aside></div>
+ <div class="ctl"><button class="cb" id="cmic" title="Microphone" onclick="tMic()">🎤</button><button class="cb" id="ccam" title="Camera" onclick="tCam()">📷</button><button class="cb" id="cscr" title="Share screen" onclick="tScr()">🖥️</button><button class="cb hand" id="chand" title="Raise hand" onclick="tHand()">✋</button>
+ <button class="cb" id="cppl" title="People" onclick="rPanel('people')">👥<small id="bpp" style="display:none"></small></button><button class="cb" id="cchat" title="Chat" onclick="rPanel('chat')">💬<small id="bch" style="display:none"></small></button>
+ <button class="cb leave" onclick="leaveRoom(false)">Leave</button>${RM.host&&RM.info.kind=="class"?`<button class="cb leave" style="background:#7f1d1d" onclick="endForAll()">End for all</button>`:""}</div>`);
+ try{await room.connect(r.url,r.token);room.startAudio().catch(()=>{})}catch(e){endedScreen("Could not connect to the video room: "+esc(e.message||e));return}
+ try{await room.localParticipant.setMicrophoneEnabled(RM.mic)}catch(e){RM.mic=false;toast("Microphone not available")}
+ try{await room.localParticipant.setCameraEnabled(RM.cam)}catch(e){RM.cam=false;toast("Camera not available")}
+ RM.clock=setInterval(()=>{const c=$("rclock");if(c){const t=Math.floor((Date.now()-RM.started)/1000);c.textContent=Math.floor(t/60)+":"+String(t%60).padStart(2,"0")}},1000);
+ if(RM.host)pollLobby();rTab(RM.tab);syncRoom()}
+function parts(){const r=RM.lk;return r?[r.localParticipant,...r.remoteParticipants.values()]:[]}
+const isHostP=p=>{try{return JSON.parse(p.metadata||"{}").host}catch(e){return false}};
+function syncRoom(){if(!RM||!RM.lk||!$("stage"))return;const L=window.LivekitClient,S_=L.Track.Source,st=$("stage"),ps=parts(),me=RM.lk.localParticipant;
+ let scr=null;ps.forEach(p=>{const pub=p.getTrackPublication(S_.ScreenShare);if(pub&&pub.track&&!pub.isMuted&&!scr)scr={p,track:pub.track}});
+ const keep=new Set();
+ const tile=(key,p,isScr)=>{keep.add(key);let el=RM.tiles[key];if(!el){el=document.createElement("div");el.className="tile"+(p===me?" me":"")+(isScr?" scr":"");el.innerHTML=`<video autoplay playsinline ${p===me?"muted":""}></video><div class="avt"><span></span></div><div class="nm"></div>`;RM.tiles[key]=el}
+  const v=el.querySelector("video"),pub=isScr?null:p.getTrackPublication(S_.Camera),tr=isScr?scr.track:(pub&&pub.track&&!pub.isMuted?pub.track:null);
+  if(tr){if(v.dataset.t!==tr.sid){tr.attach(v);v.dataset.t=tr.sid}v.style.display="block";el.querySelector(".avt").style.display="none"}else{v.style.display="none";v.dataset.t="";el.querySelector(".avt").style.display="grid"}
+  el.querySelector(".avt span").innerHTML=initials(p.name||p.identity);
+  const micOff=!isScr&&!p.isMicrophoneEnabled;el.querySelector(".nm").innerHTML=(isScr?"🖥️ ":"")+(micOff?"🔇 ":"")+esc(isScr?(p===me?"You are presenting":(p.name||p.identity)+"'s screen"):(p.name||p.identity)+(p===me?" (you)":""))+(isHostP(p)&&!isScr?' <span style="color:#9fd8d4">· host</span>':"");
+  el.classList.toggle("speak",!isScr&&p.isSpeaking);let h=el.querySelector(".hand");const up=!isScr&&p.attributes&&p.attributes.hand;
+  if(up&&!h){h=document.createElement("div");h.className="hand";h.textContent="✋ Hand raised";el.appendChild(h)}else if(!up&&h)h.remove();
+  return el};
+ const els=ps.map(p=>tile("p:"+p.identity,p,false));
+ st.className="stage"+(scr?" spot":"");
+ if(scr){const big=tile("scr",scr.p,true);let strip=st.querySelector(".strip");if(!strip){st.innerHTML="";strip=document.createElement("div");strip.className="strip"}st.style.gridTemplateColumns="";st.style.gridTemplateRows="";if(big.parentNode!==st)st.prepend(big);if(strip.parentNode!==st)st.appendChild(strip);els.forEach(e=>{if(e.parentNode!==strip)strip.appendChild(e)})}
+ else{const n=els.length,c=n<=1?1:n<=4?2:n<=9?3:4;st.style.gridTemplateColumns=`repeat(${c},minmax(0,1fr))`;st.style.gridTemplateRows="";const strip=st.querySelector(".strip");if(strip)strip.remove();els.forEach(e=>{if(e.parentNode!==st)st.appendChild(e)})}
+ Object.keys(RM.tiles).forEach(k=>{if(!keep.has(k)){const v=RM.tiles[k].querySelector("video");if(v)v.srcObject=null;RM.tiles[k].remove();delete RM.tiles[k]}});
+ /* remote audio */
+ RM.audio=RM.audio||{};const ak=new Set();RM.lk.remoteParticipants.forEach(p=>{[S_.Microphone,S_.ScreenShareAudio].forEach(src=>{const pub=p.getTrackPublication(src);if(pub&&pub.track){ak.add(pub.track.sid);if(!RM.audio[pub.track.sid]){const a=pub.track.attach();a.style.display="none";document.body.appendChild(a);RM.audio[pub.track.sid]=a}}})});
+ Object.keys(RM.audio).forEach(k=>{if(!ak.has(k)){RM.audio[k].remove();delete RM.audio[k]}});
+ $("cmic").classList.toggle("off",!me.isMicrophoneEnabled);$("ccam").classList.toggle("off",!me.isCameraEnabled);$("cscr").classList.toggle("on",me.isScreenShareEnabled);$("chand").classList.toggle("on",!!(me.attributes&&me.attributes.hand));
+ if(RM.tab==="people")renderPeople();badges()}
+function badges(){const w=RM.waiting.length,b=$("bpp");if(b){b.style.display=w?"block":"none";b.textContent=w}const c=$("bch");if(c){c.style.display=RM.unread?"block":"none";c.textContent=RM.unread}}
+function rPanel(t){const sd=$("rside");if(sd.classList.contains("hide")||RM.tab!==t){sd.classList.remove("hide");rTab(t)}else sd.classList.add("hide")}
+function rTab(t){RM.tab=t;$("tbp").classList.toggle("on",t==="people");$("tbc").classList.toggle("on",t==="chat");$("rchat").style.display=t==="chat"?"flex":"none";if(t==="chat"){RM.unread=0;renderChat()}else renderPeople();badges()}
+function renderPeople(){const pane=$("rpane");if(!pane||RM.tab!=="people")return;const me=RM.lk.localParticipant,S_=window.LivekitClient.Track.Source;
+ const ps=parts().sort((a,b)=>{const ha=+(a.attributes&&a.attributes.hand||0),hb=+(b.attributes&&b.attributes.hand||0);return (hb?1:0)-(ha?1:0)||(ha-hb)});
+ const hands=ps.filter(p=>p.attributes&&p.attributes.hand).length;
+ pane.innerHTML=(RM.host&&RM.iv?`<div class="wait"><b>Interview line (${RM.iv.queue.filter(x=>x.status!="admitted").length} waiting)</b>${ivQueueHtml(RM.iv.queue,RM.iv.canAdmit,true)}</div>`:RM.host&&RM.waiting.length?`<div class="wait"><b>Waiting to join (${RM.waiting.length})</b>${RM.waiting.map(w=>`<div class="pp"><div class="a">${initials(w.name)}</div><div>${esc(w.name)}<br><span class="mut" style="color:#9fb3c8">${esc(w.email)}</span></div><div class="x"><button class="sm2 g" onclick="admit('${enc(w.email)}',true)">Admit</button><button class="sm2 r" onclick="admit('${enc(w.email)}',false)">Deny</button></div></div>`).join("")}${RM.waiting.length>1?`<button class="sm2 g" style="margin-top:8px" onclick="admitAll()">Admit all</button>`:""}</div>`:"")
+ +`<div class="mut" style="color:#9fb3c8;margin-bottom:6px">In the room (${ps.length})${hands?" · ✋ "+hands+" raised":""}${RM.host&&hands?` <button class="sm2" onclick="lowerAll()">Lower all</button>`:""}</div>`
+ +ps.map(p=>{const hand=p.attributes&&p.attributes.hand,mic=p.getTrackPublication(S_.Microphone);return `<div class="pp"><div class="a">${initials(p.name||p.identity)}</div><div>${hand?"✋ ":""}${esc(p.name||p.identity)}${p===me?" (you)":""}${isHostP(p)?' <span style="color:#9fd8d4">host</span>':""}<br><span style="color:#9fb3c8;font-size:12px">${p.isMicrophoneEnabled?"🎤 on":"🔇 muted"} · ${p.isCameraEnabled?"📷 on":"camera off"}</span></div>
+ ${RM.host&&p!==me?`<div class="x">${hand?`<button class="sm2" onclick="lowerHand('${enc(p.identity)}')">Lower</button>`:""}${p.isMicrophoneEnabled&&mic?`<button class="sm2" onclick="muteP('${enc(p.identity)}','${esc(mic.trackSid)}')">Mute</button>`:""}${!isHostP(p)?`<button class="sm2 r" onclick="kick('${enc(p.identity)}')">Remove</button>`:""}</div>`:""}</div>`}).join("")}
+function renderChat(){const pane=$("rpane");if(!pane||RM.tab!=="chat")return;pane.innerHTML=RM.chat.length?RM.chat.map(m=>`<div class="msg"><b>${esc(m.name)} · ${new Date(m.at).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}</b><br>${linkify(m.text)}</div>`).join(""):'<p style="color:#9fb3c8">Messages are visible to everyone in the room and disappear when the class ends.</p>';pane.scrollTop=1e6}
+function send(m){RM.lk.localParticipant.publishData(new TextEncoder().encode(JSON.stringify(m)),{reliable:true,topic:"miq"})}
+function sendChat(){const i=$("rmsg"),t=i.value.trim();if(!t)return;const m={type:"chat",text:t.slice(0,1000),name:S.user.name||S.user.email,at:Date.now()};send(m);RM.chat.push(m);i.value="";renderChat()}
+function onData(m,p){if(!RM)return;if(m.type==="chat"){RM.chat.push({type:"chat",text:String(m.text||""),name:(p&&p.name)||m.name,at:Date.now()});if(RM.tab!=="chat"||$("rside").classList.contains("hide")){RM.unread++;toast("💬 "+esc((p&&p.name)||"")+": "+esc(String(m.text||"").slice(0,60)))}renderChat();badges()}
+ if(p&&isHostP(p)&&(m.type==="lowerAll"||(m.type==="lower"&&m.identity===RM.lk.localParticipant.identity))&&RM.lk.localParticipant.attributes.hand){RM.lk.localParticipant.setAttributes({hand:""});toast("The host lowered your hand")}}
+function toast(html,ms=3500){const c=document.querySelector(".rm .ctl");if(!c)return;const t=document.createElement("div");t.className="toast";t.innerHTML=html;c.appendChild(t);if(ms)setTimeout(()=>t.remove(),ms)}
+async function tMic(){const lp=RM.lk.localParticipant;try{await lp.setMicrophoneEnabled(!lp.isMicrophoneEnabled)}catch(e){toast("Microphone not available: "+esc(e.message))}syncRoom()}
+async function tCam(){const lp=RM.lk.localParticipant;try{await lp.setCameraEnabled(!lp.isCameraEnabled)}catch(e){toast("Camera not available: "+esc(e.message))}syncRoom()}
+async function tScr(){const lp=RM.lk.localParticipant;try{await lp.setScreenShareEnabled(!lp.isScreenShareEnabled,{audio:true})}catch(e){if(e.name!=="NotAllowedError")toast("Screen sharing isn't available on this device.")}syncRoom()}
+async function tHand(){const lp=RM.lk.localParticipant,up=!(lp.attributes&&lp.attributes.hand);try{await lp.setAttributes({hand:up?String(Date.now()):""})}catch(e){toast("Could not raise your hand")}if(up)toast("✋ Your hand is raised");syncRoom()}
+function lowerHand(id){send({type:"lower",identity:dec(id)})}
+function lowerAll(){send({type:"lowerAll"})}
+async function muteP(id,sid){const r=await api("muteInRoom",{id:RM.id,student:dec(id),track:sid});if(!r.ok)toast("Could not mute")}
+async function kick(id){if(!confirm("Remove this person from the room? They won't be able to rejoin unless they ask again and you admit them."))return;await api("removeFromRoom",{id:RM.id,student:dec(id)})}
+async function pollLobby(){if(!RM||!RM.lk)return;const r=await api("lobby",{id:RM.id});if(!RM||!RM.lk)return;
+ if(r.ok&&r.interview){const before=new Set(RM.waiting.map(w=>w.email));RM.iv=r;RM.waiting=r.waiting;const fresh=r.waiting.filter(w=>!before.has(w.email));
+  if(fresh.length)toast("🚪 "+esc(fresh[0].name)+(fresh.length>1?" and "+(fresh.length-1)+" more":"")+` ${fresh.length>1?"are":"is"} waiting for an interview`+(r.canAdmit?` <button class="sm2 g" onclick="ivSet('${enc(fresh[0].email)}','admitted');this.parentNode.remove()">Admit</button>`:""),8000);
+  renderPeople();badges();RM.lpoll=setTimeout(pollLobby,4000);return}
+ if(r.ok){const before=new Set(RM.waiting.map(w=>w.email));RM.waiting=r.waiting;const fresh=r.waiting.filter(w=>!before.has(w.email));
+  if(fresh.length)toast("🚪 "+esc(fresh[0].name)+(fresh.length>1?" and "+(fresh.length-1)+" more":"")+` ${fresh.length>1?"are":"is"} waiting <button class="sm2 g" onclick="admit('${enc(fresh[0].email)}',true);this.parentNode.remove()">Admit</button>`,8000);
+  renderPeople();badges()}
+ RM.lpoll=setTimeout(pollLobby,4000)}
+async function admit(e,allow){const email=dec(e);RM.waiting=RM.waiting.filter(w=>w.email!==email);renderPeople();badges();await api("admit",{id:RM.id,student:email,allow})}
+async function admitAll(){const L=RM.waiting.slice();RM.waiting=[];renderPeople();badges();for(const w of L)await api("admit",{id:RM.id,student:w.email,allow:true})}
+async function endForAll(){if(!confirm("End this class for everyone?"))return;const id=RM.id;await api("endClass",{id});leaveRoom(true);location.hash="#/t/classroom"}
+function endedScreen(msg){const id=RM.id,host=RM.host;leaveRoom(true);RM={id,host,tiles:{},info:null};$("app").innerHTML=roomShell(`<div class="pre"><div style="max-width:520px;text-align:center"><h1>${msg}</h1><p><button class="btn t" onclick="roomPage('${esc(id)}')">Rejoin</button> <a class="btn g" href="#/${host?"t/classroom":"classroom"}">Back to Classroom</a></p></div></div>`)}
+function leaveRoom(silent){if(!RM)return;const r=RM;r.leaving=true;clearTimeout(r.poll);clearTimeout(r.lpoll);clearInterval(r.clock);stopPreview();
+ if(r.audio)Object.values(r.audio).forEach(a=>a.remove());if(r.lk){try{r.lk.disconnect()}catch(e){}}RM=null;
+ if(!silent)location.hash=r.host?"#/t/classroom":"#/classroom"}
+
+/* ===== ROUTER ===== */
+async function route(){const h=(location.hash||"#/").slice(2).split("/"),r=h[0]||"home",A=$("app");
+if(r=="home"||r=="event"){A.innerHTML=r=="event"?eventPage(dec(h[1]||"")):home();reveal();
+ if(!route.siteLoaded){route.siteLoaded=1;loadSite().then(ok=>{const c=(location.hash||"#/").slice(2).split("/")[0]||"home";if(ok&&(c=="home"||c=="event"))route()})}
+ if(r=="event"&&sess()&&!S){await load();if(S)A.innerHTML=eventPage(dec(h[1]||""))}return}
+if(r=="room"){if(!S&&sess()){A.innerHTML='<div class="ld">Loading…</div>';await load()}if(!S){location.hash="#/login";return}roomPage(dec(h[1]||""));return}
+if(r=="portal"){location.hash=sess()?(sess().role=="teacher"?"#/t":"#/dashboard"):"#/login";return}
+if(["login","register","forgot"].includes(r)){if(sess()&&!S){A.innerHTML='<div class="ld">Loading…</div>';await load()}
+ if(S){location.hash=isT()?"#/t":"#/dashboard";return}A.innerHTML=V[r]();window.scrollTo(0,0);return}
+if(!S&&sess()){A.innerHTML='<div class="ld">Loading…</div>';await load()}
+if(!S){location.hash="#/login";return}
+const t=isT();
+if((r=="t"&&!t)||(t&&["dashboard","learning","module","classroom","resources","calendar","activities"].includes(r))){location.hash=t?"#/t":"#/dashboard";return}
+let cur=r,html;
+if(r=="t"){const s=h[1]||"",adm=S.user.admin;cur=s?"t/"+(s=="student"?"students":s):"t";
+ if(["","students","student","modules","activity","messages","interviews"].includes(s))await loadT();
+ if(s=="interviews")await loadR();
+ if(["student","modules"].includes(s))await loadF();
+ if(["student","activity"].includes(s))await loadG();
+ if(s=="classroom"){await loadR();await loadT();if(isA())await loadMH()}
+ if(s=="instructors"&&(S.user.lead||adm))await loadI();
+ if((s=="messages"||s=="website")&&adm)await loadMH();
+ html=({"":tHome,students:tStudents,student:()=>tStudent(dec(h[2]||"")),modules:tModules,classroom:tClass,announce:tAnnounce,messages:tMessages,activity:tActivity,
+  instructors:S.user.lead||adm?tInstr:tHome,interviews:adm?tInterviews:tHome,website:adm?tWebsite:tHome}[s]||tHome)()}
+else{cur=r=="module"?"learning":r;
+ if(r=="module"){await loadF();if(h[1])api("viewModule",{module:+h[1]})}if(r=="classroom")await loadR();
+ html=(St[r]||St.dashboard)(h[1])}
+A.innerHTML=shell(cur,html);window.scrollTo(0,0)}
+addEventListener("hashchange",()=>{closeGame();leaveRoom(true);route()});route();
+</script></body></html>
